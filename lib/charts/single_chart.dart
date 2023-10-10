@@ -87,7 +87,7 @@ class _SingleChartState extends State<SingleChart> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 12.0),
+                      padding: const EdgeInsets.symmetric(vertical: 6.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -95,19 +95,19 @@ class _SingleChartState extends State<SingleChart> {
                             'Price (${widget.selectedPeriod}) ago:',
                             style: widget.textStyle,
                           ),
-                          Text(widget.previousPrice.toString(),
+                          Text('₱ ${widget.previousPrice}',
                               style: widget.textStyle)
                         ],
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 12.0),
+                      padding: const EdgeInsets.symmetric(vertical: 6.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text('Current price:', style: widget.textStyle),
                           snapshot.hasData
-                              ? Text(snapshot.data!.toStringAsFixed(2),
+                              ? Text('₱ ${snapshot.data!.toStringAsFixed(2)}',
                                   style: widget.textStyle)
                               : Text('Loading prices', style: widget.textStyle)
                           // if (snapshot.hasData) {
@@ -119,14 +119,14 @@ class _SingleChartState extends State<SingleChart> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 12.0),
+                      padding: const EdgeInsets.only(top: 6.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text('Price change:', style: widget.textStyle),
                           (snapshot.hasData)
                               ? Text(
-                                  '(${priceChangePct.toStringAsFixed(2)} %) P${priceChange.toStringAsFixed(2)}',
+                                  '(${priceChangePct.toStringAsFixed(2)} %) ₱ ${priceChange.toStringAsFixed(2)}',
                                   style: widget.textStyle)
                               : Text('Loading prices', style: widget.textStyle)
                         ],
@@ -138,6 +138,8 @@ class _SingleChartState extends State<SingleChart> {
         ),
         SfCartesianChart(
             borderWidth: 0,
+            plotAreaBorderColor: Colors.transparent,
+            plotAreaBorderWidth: 0,
             backgroundColor: Colors.transparent,
             borderColor: Colors.transparent,
             primaryXAxis: NumericAxis(isVisible: false),
