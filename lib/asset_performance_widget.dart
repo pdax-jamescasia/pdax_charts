@@ -77,6 +77,7 @@ class _AssetPerformanceWidgetState extends State<AssetPerformanceWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
       color: Colors.white,
       child: Column(
         mainAxisSize: MainAxisSize.max,
