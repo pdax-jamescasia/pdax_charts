@@ -86,41 +86,51 @@ class _SingleChartState extends State<SingleChart> {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Price (${widget.selectedPeriod}) ago:',
-                          style: widget.textStyle,
-                        ),
-                        Text(widget.previousPrice.toString(),
-                            style: widget.textStyle)
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Price (${widget.selectedPeriod}) ago:',
+                            style: widget.textStyle,
+                          ),
+                          Text(widget.previousPrice.toString(),
+                              style: widget.textStyle)
+                        ],
+                      ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('Current price:', style: widget.textStyle),
-                        snapshot.hasData
-                            ? Text(snapshot.data.toString(),
-                                style: widget.textStyle)
-                            : Text('Loading prices', style: widget.textStyle)
-                        // if (snapshot.hasData) {
-                        //       return ;
-                        //     } else {
-                        //       return Text('Loading prices');
-                        //     }
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Current price:', style: widget.textStyle),
+                          snapshot.hasData
+                              ? Text(snapshot.data!.toStringAsFixed(2),
+                                  style: widget.textStyle)
+                              : Text('Loading prices', style: widget.textStyle)
+                          // if (snapshot.hasData) {
+                          //       return ;
+                          //     } else {
+                          //       return Text('Loading prices');
+                          //     }
+                        ],
+                      ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('Price change:', style: widget.textStyle),
-                        (snapshot.hasData)
-                            ? Text('($priceChangePct %) P$priceChange',
-                                style: widget.textStyle)
-                            : Text('Loading prices', style: widget.textStyle)
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Price change:', style: widget.textStyle),
+                          (snapshot.hasData)
+                              ? Text(
+                                  '(${priceChangePct.toStringAsFixed(2)} %) P${priceChange.toStringAsFixed(2)}',
+                                  style: widget.textStyle)
+                              : Text('Loading prices', style: widget.textStyle)
+                        ],
+                      ),
                     )
                   ],
                 );
