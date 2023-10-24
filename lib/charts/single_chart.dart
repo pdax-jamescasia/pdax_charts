@@ -1,5 +1,6 @@
 import 'package:pdax_charts/charts/metadata_point.dart';
 import 'package:flutter/material.dart';
+import 'package:pdax_charts/constants.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'data_point.dart';
 import 'dart:async';
@@ -37,6 +38,29 @@ class SingleChart extends StatefulWidget {
 }
 
 class _SingleChartState extends State<SingleChart> {
+  // function for getting the representative (middle) time for any period
+  String getMiddleTime(int startMillis, int endMillis) {
+    int middleMillis = ((startMillis + endMillis) / 2) as int;
+
+    DateTime date = DateTime.fromMillisecondsSinceEpoch(middleMillis);
+    switch (widget.selectedPeriod) {
+      case Constants.TWENTYFOUR_HOURS:
+        return "${date.month} ${date.day} ${date.hour}:${date.minute}";
+      case Constants.SEVEN_DAYS:
+        return "${date.month} ${date.day}";
+
+      case Constants.THIRTY_DAYS:
+        return "${date.month} ${date.day}";
+      case Constants.NINETY_DAYS:
+        return "${date.month} ${date.day}";
+      case Constants.ONE_YEAR:
+        return "${date.month} ${date.year}";
+
+      default:
+        return "";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     // calculate min max
@@ -142,43 +166,66 @@ class _SingleChartState extends State<SingleChart> {
                   return Padding(
                       padding: const EdgeInsets.symmetric(
                           vertical: 2, horizontal: 3),
-                      child: widget.metadata![pointIndex].delta >= 0
-                          ? Row(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                const Icon(
-                                  Icons.arrow_drop_up,
-                                  size: 24,
-                                  color: Colors.green,
-                                ),
-                                Text(
-                                  '${widget.metadata![pointIndex].delta.toStringAsFixed(2)} %',
-                                  style: TextStyle(
-                                      color: Colors.green,
-                                      fontFamily: widget.textStyle!.fontFamily,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                              ],
-                            )
-                          : Row(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                const Icon(
-                                  Icons.arrow_drop_down,
-                                  size: 24,
-                                  color: Colors.red,
-                                ),
-                                Text(
-                                  '${widget.metadata![pointIndex].delta.toStringAsFixed(2)} %',
-                                  style: TextStyle(
-                                      color: Colors.red,
-                                      fontFamily: widget.textStyle!.fontFamily,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                              ],
-                            ));
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            'P ${widget.data[pointIndex].averagePrice}',
+                            style: TextStyle(
+                                fontFamily: widget.textStyle!.fontFamily,
+                                fontWeight: FontWeight.w400),
+                          ),
+                          Text(
+                            getMiddleTime(
+                                widget.data[pointIndex].startTimestampUnixMilli,
+                                widget.data[pointIndex].endTimestampUnixMilli),
+                            style: TextStyle(
+                                fontFamily: widget.textStyle!.fontFamily,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ],
+                      )
+
+                      //  widget.metadata![pointIndex].delta >= 0
+                      //     ? Row(
+                      //         mainAxisSize: MainAxisSize.min,
+                      //         crossAxisAlignment: CrossAxisAlignment.center,
+                      //         children: [
+                      //           const Icon(
+                      //             Icons.arrow_drop_up,
+                      //             size: 24,
+                      //             color: Colors.green,
+                      //           ),
+                      //           Text(
+                      //             '${widget.metadata![pointIndex].delta.toStringAsFixed(2)} %',
+                      //             style: TextStyle(
+                      //                 color: Colors.green,
+                      //                 fontFamily: widget.textStyle!.fontFamily,
+                      //                 fontWeight: FontWeight.w400),
+                      //           ),
+                      //         ],
+                      //       )
+                      //     : Row(
+                      //         mainAxisSize: MainAxisSize.min,
+                      //         crossAxisAlignment: CrossAxisAlignment.center,
+                      //         children: [
+                      //           const Icon(
+                      //             Icons.arrow_drop_down,
+                      //             size: 24,
+                      //             color: Colors.red,
+                      //           ),
+                      //           Text(
+                      //             '${widget.metadata![pointIndex].delta.toStringAsFixed(2)} %',
+                      //             style: TextStyle(
+                      //                 color: Colors.red,
+                      //                 fontFamily: widget.textStyle!.fontFamily,
+                      //                 fontWeight: FontWeight.w400),
+                      //           ),
+                      //         ],
+                      //       )
+
+                      );
                 }),
             series: <ChartSeries<DataPoint, dynamic>>[
               AreaSeries<DataPoint, dynamic>(
