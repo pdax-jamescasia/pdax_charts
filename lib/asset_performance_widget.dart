@@ -104,8 +104,8 @@ class _AssetPerformanceWidgetState extends State<AssetPerformanceWidget> {
                   onTap: () {
                     setState(() {
                       selectedPeriod = Constants.TWENTYFOUR_HOURS;
-                      widget.fetchChartPricesCallback!(
-                          Constants.TWENTYFOUR_HOURS);
+                      widget
+                          .fetchChartPricesCallback(Constants.TWENTYFOUR_HOURS);
                     });
                   },
                   child: Container(
@@ -134,7 +134,7 @@ class _AssetPerformanceWidgetState extends State<AssetPerformanceWidget> {
                   onTap: () {
                     setState(() {
                       selectedPeriod = Constants.SEVEN_DAYS;
-                      widget.fetchChartPricesCallback!(Constants.SEVEN_DAYS);
+                      widget.fetchChartPricesCallback(Constants.SEVEN_DAYS);
                     });
                   },
                   child: Container(
@@ -163,7 +163,7 @@ class _AssetPerformanceWidgetState extends State<AssetPerformanceWidget> {
                   onTap: () {
                     setState(() {
                       selectedPeriod = Constants.THIRTY_DAYS;
-                      widget.fetchChartPricesCallback!(Constants.THIRTY_DAYS);
+                      widget.fetchChartPricesCallback(Constants.THIRTY_DAYS);
                     });
                   },
                   child: Container(
@@ -192,7 +192,7 @@ class _AssetPerformanceWidgetState extends State<AssetPerformanceWidget> {
                   onTap: () {
                     setState(() {
                       selectedPeriod = Constants.NINETY_DAYS;
-                      widget.fetchChartPricesCallback!(Constants.NINETY_DAYS);
+                      widget.fetchChartPricesCallback(Constants.NINETY_DAYS);
                     });
                   },
                   child: Container(
@@ -221,7 +221,7 @@ class _AssetPerformanceWidgetState extends State<AssetPerformanceWidget> {
                   onTap: () {
                     setState(() {
                       selectedPeriod = Constants.ONE_YEAR;
-                      widget.fetchChartPricesCallback!(Constants.ONE_YEAR);
+                      widget.fetchChartPricesCallback(Constants.ONE_YEAR);
                     });
                   },
                   child: Container(

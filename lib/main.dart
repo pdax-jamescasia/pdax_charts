@@ -22,13 +22,13 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({super.key, required this.title});
+  const MyHomePage({super.key, required this.title});
 
   final String title;
 
@@ -52,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
       StreamController<double>();
 
   final randomDataStream = Stream<double>.periodic(
-    Duration(seconds: 1),
+    const Duration(seconds: 1),
     (count) =>
         Random().nextInt(100) *
         1.02, // Generates random integers between 0 and 99
@@ -110,18 +110,18 @@ class _MyHomePageState extends State<MyHomePage> {
               width: 400,
               height: 140,
               color: Colors.grey.shade300,
-              padding: EdgeInsets.all(6),
+              padding: const EdgeInsets.all(6),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Text('BTC'),
+                  const Text('BTC'),
                   SimpleLineChartWidget(
                     data: data,
                     color: Colors.blue,
                   ),
-                  Text('1414514 Php')
+                  const Text('1414514 Php')
                 ],
               ))
         ]) // This trailing comma makes auto-formatting nicer for build methods.

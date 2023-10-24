@@ -12,7 +12,7 @@ class SingleChart extends StatefulWidget {
   ///
   ///
   final List<DataPoint> data; //the x & y
-  Stream<double> currentPriceStream; //local variable from a stream
+  final Stream<double> currentPriceStream; //local variable from a stream
   // final double? currentPrice;
   final List<MetadataPoint>? metadata; //tooltip information
   final List<String>? labels; // the x-labels
@@ -21,7 +21,7 @@ class SingleChart extends StatefulWidget {
   final num previousPrice;
   final TextStyle? textStyle;
 
-  SingleChart(
+  const SingleChart(
       {super.key,
       required this.data,
       required this.selectedPeriod,
@@ -37,20 +37,6 @@ class SingleChart extends StatefulWidget {
 }
 
 class _SingleChartState extends State<SingleChart> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
-
-  double priceChange() {
-    return 1;
-  }
-
-  double priceChangePct() {
-    return 0.1;
-  }
-
   @override
   Widget build(BuildContext context) {
     // calculate min max
