@@ -6,4 +6,19 @@ class Constants {
   static const String THIRTY_DAYS = '30D';
   static const String NINETY_DAYS = '90D';
   static const String ONE_YEAR = '1Y';
+  static const List<String> months = [
+    '',
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec'
+  ];
 }

@@ -45,16 +45,16 @@ class _SingleChartState extends State<SingleChart> {
     DateTime date = DateTime.fromMillisecondsSinceEpoch(middleMillis);
     switch (widget.selectedPeriod) {
       case Constants.TWENTYFOUR_HOURS:
-        return "${date.month} ${date.day} ${date.hour}:${date.minute}";
+        return "${Constants.months[date.month]} ${date.day} ${date.hour}:${date.minute}";
       case Constants.SEVEN_DAYS:
-        return "${date.month} ${date.day}";
+        return "${Constants.months[date.month]} ${date.day} ${date.hour}:00";
 
       case Constants.THIRTY_DAYS:
-        return "${date.month} ${date.day}";
+        return "${Constants.months[date.month]} ${date.day}";
       case Constants.NINETY_DAYS:
-        return "${date.month} ${date.day}";
+        return "${Constants.months[date.month]} ${date.day}";
       case Constants.ONE_YEAR:
-        return "${date.month} ${date.year}";
+        return "${Constants.months[date.month]} ${date.year}";
 
       default:
         return "";
@@ -156,25 +156,29 @@ class _SingleChartState extends State<SingleChart> {
             primaryYAxis: NumericAxis(isVisible: false),
             legend: const Legend(isVisible: false),
             tooltipBehavior: TooltipBehavior(
+                borderWidth: 0.3,
+                borderColor: Colors.black,
                 enable: true,
                 elevation: 6,
                 shadowColor: Colors.black,
                 tooltipPosition: TooltipPosition.auto,
-                color: const Color.fromARGB(255, 236, 236, 236),
+                color: Color.fromARGB(255, 249, 249, 249),
                 canShowMarker: true,
                 builder: (data, point, series, pointIndex, seriesIndex) {
                   return Padding(
                       padding: const EdgeInsets.symmetric(
                           vertical: 2, horizontal: 3),
                       child: Column(
+                        mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            'P ${widget.data[pointIndex].averagePrice}',
+                            '₱ ${widget.data[pointIndex].averagePrice.toStringAsFixed(2)}',
                             style: TextStyle(
+                                color: Colors.blue,
                                 fontFamily: widget.textStyle!.fontFamily,
-                                fontWeight: FontWeight.w400),
+                                fontWeight: FontWeight.w500),
                           ),
                           Text(
                             getMiddleTime(
