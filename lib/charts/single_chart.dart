@@ -4,6 +4,7 @@ import 'package:pdax_charts/constants.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'data_point.dart';
 import 'dart:async';
+import 'package:intl/intl.dart';
 
 class SingleChart extends StatefulWidget {
   /// Restrictions
@@ -38,6 +39,9 @@ class SingleChart extends StatefulWidget {
 }
 
 class _SingleChartState extends State<SingleChart> {
+  NumberFormat currencyFormat =
+      NumberFormat.currency(locale: 'en_US', symbol: '₱', decimalDigits: 2);
+
   // function for getting the representative (middle) time for any period
   String getMiddleTime(int startMillis, int endMillis) {
     int middleMillis = ((startMillis + endMillis) / 2) as int;
@@ -59,6 +63,12 @@ class _SingleChartState extends State<SingleChart> {
       default:
         return "";
     }
+  }
+
+  @override
+  void initState() {
+    currencyFormat.maximumFractionDigits = 2;
+    super.initState();
   }
 
   @override
@@ -105,7 +115,7 @@ class _SingleChartState extends State<SingleChart> {
                             'Price (${widget.selectedPeriod}) ago:',
                             style: widget.textStyle,
                           ),
-                          Text('₱ ${widget.previousPrice}',
+                          Text(currencyFormat.format(widget.previousPrice),
                               style: widget.textStyle)
                         ],
                       ),
@@ -117,7 +127,7 @@ class _SingleChartState extends State<SingleChart> {
                         children: [
                           Text('Current price:', style: widget.textStyle),
                           snapshot.hasData
-                              ? Text('₱ ${snapshot.data!.toStringAsFixed(2)}',
+                              ? Text(currencyFormat.format(snapshot.data!),
                                   style: widget.textStyle)
                               : Text('Loading prices', style: widget.textStyle)
                           // if (snapshot.hasData) {
@@ -136,7 +146,7 @@ class _SingleChartState extends State<SingleChart> {
                           Text('Price change:', style: widget.textStyle),
                           (snapshot.hasData)
                               ? Text(
-                                  '(${priceChangePct.toStringAsFixed(2)} %) ₱ ${priceChange.toStringAsFixed(2)}',
+                                  '(${priceChangePct.toStringAsFixed(2)} %) ${currencyFormat.format(priceChange)}',
                                   style: widget.textStyle)
                               : Text('Loading prices', style: widget.textStyle)
                         ],
@@ -162,7 +172,7 @@ class _SingleChartState extends State<SingleChart> {
                 elevation: 6,
                 shadowColor: Colors.black,
                 tooltipPosition: TooltipPosition.auto,
-                color: Color.fromARGB(255, 249, 249, 249),
+                color: const Color.fromARGB(255, 249, 249, 249),
                 canShowMarker: true,
                 builder: (data, point, series, pointIndex, seriesIndex) {
                   return Padding(
@@ -174,7 +184,8 @@ class _SingleChartState extends State<SingleChart> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            '₱ ${widget.data[pointIndex].averagePrice.toStringAsFixed(2)}',
+                            currencyFormat
+                                .format(widget.data[pointIndex].averagePrice),
                             style: TextStyle(
                                 color: Colors.blue,
                                 fontFamily: widget.textStyle!.fontFamily,
@@ -250,7 +261,7 @@ class _SingleChartState extends State<SingleChart> {
                     builder: (data, point, series, pointIndex, seriesIndex) {
                       if ([maxIdx, minIdx].contains(pointIndex)) {
                         return Text(
-                          data.averagePrice.toStringAsFixed(2),
+                          currencyFormat.format(data.averagePrice),
                           style: widget.textStyle,
                         );
                       } else {
