@@ -46,7 +46,6 @@ class _AssetPerformanceWidgetState extends State<AssetPerformanceWidget> {
 
   @override
   void initState() {
-    widget.fetchChartPricesCallback(selectedPeriod);
     super.initState();
   }
 
