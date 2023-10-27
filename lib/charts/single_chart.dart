@@ -172,6 +172,7 @@ class _SingleChartState extends State<SingleChart> {
             primaryYAxis: NumericAxis(isVisible: false),
             legend: const Legend(isVisible: false),
             tooltipBehavior: TooltipBehavior(
+                activationMode: ActivationMode.singleTap,
                 borderWidth: 0.3,
                 borderColor: Colors.black,
                 enable: true,
