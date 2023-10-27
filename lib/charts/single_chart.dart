@@ -253,6 +253,7 @@ class _SingleChartState extends State<SingleChart> {
               AreaSeries<DataPoint, dynamic>(
                   dataSource: widget.data,
                   gradient: widget.gradient,
+                  enableTooltip: true,
                   xValueMapper: (DataPoint d, _) => d.startTimestampUnixMilli,
                   yValueMapper: (DataPoint d, _) => d.averagePrice,
                   borderWidth: 3,
