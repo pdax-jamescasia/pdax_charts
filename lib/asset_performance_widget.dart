@@ -66,7 +66,7 @@ class _AssetPerformanceWidgetState extends State<AssetPerformanceWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisSize: MainAxisSize.max,
+      mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SingleChart(
