@@ -75,7 +75,7 @@ class _AssetPerformanceWidgetState extends State<AssetPerformanceWidget> {
           metadata: metadata,
           gradient: widget.gradient,
           labels: getLabels(selectedPeriod),
-          previousPrice: 1,
+          previousPrice: widget.previousPrice,
           currentPriceStream: widget.currentPricestream,
           textStyle: widget.textStyle,
         ),
