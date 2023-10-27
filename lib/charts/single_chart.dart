@@ -172,7 +172,8 @@ class _SingleChartState extends State<SingleChart> {
             primaryYAxis: NumericAxis(isVisible: false),
             legend: const Legend(isVisible: false),
             tooltipBehavior: TooltipBehavior(
-                activationMode: ActivationMode.singleTap,
+                shouldAlwaysShow: true,
+                activationMode: ActivationMode.longPress,
                 borderWidth: 0.3,
                 borderColor: Colors.black,
                 enable: true,
@@ -207,47 +208,7 @@ class _SingleChartState extends State<SingleChart> {
                                 fontWeight: FontWeight.w400),
                           ),
                         ],
-                      )
-
-                      //  widget.metadata![pointIndex].delta >= 0
-                      //     ? Row(
-                      //         mainAxisSize: MainAxisSize.min,
-                      //         crossAxisAlignment: CrossAxisAlignment.center,
-                      //         children: [
-                      //           const Icon(
-                      //             Icons.arrow_drop_up,
-                      //             size: 24,
-                      //             color: Colors.green,
-                      //           ),
-                      //           Text(
-                      //             '${widget.metadata![pointIndex].delta.toStringAsFixed(2)} %',
-                      //             style: TextStyle(
-                      //                 color: Colors.green,
-                      //                 fontFamily: widget.textStyle!.fontFamily,
-                      //                 fontWeight: FontWeight.w400),
-                      //           ),
-                      //         ],
-                      //       )
-                      //     : Row(
-                      //         mainAxisSize: MainAxisSize.min,
-                      //         crossAxisAlignment: CrossAxisAlignment.center,
-                      //         children: [
-                      //           const Icon(
-                      //             Icons.arrow_drop_down,
-                      //             size: 24,
-                      //             color: Colors.red,
-                      //           ),
-                      //           Text(
-                      //             '${widget.metadata![pointIndex].delta.toStringAsFixed(2)} %',
-                      //             style: TextStyle(
-                      //                 color: Colors.red,
-                      //                 fontFamily: widget.textStyle!.fontFamily,
-                      //                 fontWeight: FontWeight.w400),
-                      //           ),
-                      //         ],
-                      //       )
-
-                      );
+                      ));
                 }),
             series: <ChartSeries<DataPoint, dynamic>>[
               AreaSeries<DataPoint, dynamic>(
