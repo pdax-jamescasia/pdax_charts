@@ -99,61 +99,67 @@ class _SingleChartState extends State<SingleChart> {
           child: StreamBuilder<double>(
               stream: widget.currentPriceStream,
               builder: (context, snapshot) {
-                double priceChange = snapshot.data! - widget.previousPrice;
-                double priceChangePct =
-                    priceChange * 100 / widget.previousPrice;
+                if (snapshot.data != null) {
+                  double priceChange = snapshot.data! - widget.previousPrice;
+                  double priceChangePct =
+                      priceChange * 100 / widget.previousPrice;
 
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 4.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Price (${widget.selectedPeriod}) ago:',
-                            style: widget.textStyle,
-                          ),
-                          Text(currencyFormat.format(widget.previousPrice),
-                              style: widget.textStyle)
-                        ],
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 4.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Price (${widget.selectedPeriod}) ago:',
+                              style: widget.textStyle,
+                            ),
+                            Text(currencyFormat.format(widget.previousPrice),
+                                style: widget.textStyle)
+                          ],
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 4.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Current price:', style: widget.textStyle),
-                          snapshot.hasData
-                              ? Text(currencyFormat.format(snapshot.data!),
-                                  style: widget.textStyle)
-                              : Text('Loading prices', style: widget.textStyle)
-                          // if (snapshot.hasData) {
-                          //       return ;
-                          //     } else {
-                          //       return Text('Loading prices');
-                          //     }
-                        ],
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 4.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('Current price:', style: widget.textStyle),
+                            snapshot.hasData
+                                ? Text(currencyFormat.format(snapshot.data!),
+                                    style: widget.textStyle)
+                                : Text('Loading prices',
+                                    style: widget.textStyle)
+                            // if (snapshot.hasData) {
+                            //       return ;
+                            //     } else {
+                            //       return Text('Loading prices');
+                            //     }
+                          ],
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 4.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Price change:', style: widget.textStyle),
-                          (snapshot.hasData)
-                              ? Text(
-                                  '(${priceChangePct.toStringAsFixed(2)} %) ${currencyFormat.format(priceChange)}',
-                                  style: widget.textStyle)
-                              : Text('Loading prices', style: widget.textStyle)
-                        ],
-                      ),
-                    )
-                  ],
-                );
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('Price change:', style: widget.textStyle),
+                            (snapshot.hasData)
+                                ? Text(
+                                    '(${priceChangePct.toStringAsFixed(2)} %) ${currencyFormat.format(priceChange)}',
+                                    style: widget.textStyle)
+                                : Text('Loading prices',
+                                    style: widget.textStyle)
+                          ],
+                        ),
+                      )
+                    ],
+                  );
+                } else {
+                  return const SizedBox();
+                }
               }),
         ),
         SfCartesianChart(

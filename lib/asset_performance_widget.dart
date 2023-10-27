@@ -61,16 +61,6 @@ class _AssetPerformanceWidgetState extends State<AssetPerformanceWidget> {
     };
 
     return periodToLabelsMap[period]!;
-
-    DateTime dateTime = DateTime.now();
-    if (period == Constants.TWENTYFOUR_HOURS) {
-    } else if (period == Constants.SEVEN_DAYS) {
-    } else if (period == Constants.THIRTY_DAYS) {
-    } else if (period == Constants.NINETY_DAYS) {
-    } else {}
-
-    //asdf
-    // /asdf
   }
 
   @override
