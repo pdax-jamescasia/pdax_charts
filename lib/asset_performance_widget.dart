@@ -16,12 +16,15 @@ class AssetPerformanceWidget extends StatefulWidget {
   final List<DataPoint> data;
   final double previousPrice;
   final Stream<double> currentPricestream;
-
+  final bool isFail;
+  final bool isLoading;
   const AssetPerformanceWidget(
       {super.key,
       this.gradient,
       this.textStyle,
       required this.fetchChartPricesCallback,
+      required this.isFail,
+      required this.isLoading,
       required this.data,
       required this.previousPrice,
       required this.currentPricestream});
@@ -74,6 +77,8 @@ class _AssetPerformanceWidgetState extends State<AssetPerformanceWidget> {
           data: widget.data,
           metadata: metadata,
           gradient: widget.gradient,
+          isLoading: widget.isLoading,
+          isFail: widget.isFail,
           labels: getLabels(selectedPeriod),
           previousPrice: widget.previousPrice,
           currentPriceStream: widget.currentPricestream,

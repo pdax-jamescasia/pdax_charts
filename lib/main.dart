@@ -98,14 +98,14 @@ class _MyHomePageState extends State<MyHomePage> {
           title: Text(widget.title),
         ),
         body: Column(children: [
-          AssetPerformanceWidget(
-            gradient: gradientColors,
-            currentPricestream: currentPriceStreamController.stream,
-            textStyle: style,
-            data: data,
-            fetchChartPricesCallback: setData,
-            previousPrice: 3,
-          ),
+          // AssetPerformanceWidget(
+          //   gradient: gradientColors,
+          //   currentPricestream: currentPriceStreamController.stream,
+          //   textStyle: style,
+          //   data: data,
+          //   fetchChartPricesCallback: setData,
+          //   previousPrice: 3,
+          // ),
           Container(
               width: 400,
               height: 140,
