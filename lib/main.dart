@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:pdax_charts/asset_performance_widget.dart';
 import 'package:pdax_charts/constants.dart';
 import 'package:pdax_charts/simple_line_chart_widget.dart';
 import 'package:flutter/material.dart';
