@@ -25,7 +25,7 @@ class SingleChart extends StatefulWidget {
   final bool isLoading;
   final bool isFail;
   get isEmpty => data.isEmpty;
-
+  final double boxHeight = 300;
   const SingleChart(
       {super.key,
       required this.data,
@@ -168,19 +168,20 @@ class _SingleChartState extends State<SingleChart> {
               }),
         ),
         if (widget.isFail)
-          const SizedBox(
-            height: 400,
-            child: Center(
+          SizedBox(
+            height: widget.boxHeight,
+            child: const Center(
               child: Text('Failed fetching data. Please try again later.'),
             ),
           )
         else if (widget.isLoading)
-          const SizedBox(
-              height: 400, child: Center(child: CircularProgressIndicator()))
+          SizedBox(
+              height: widget.boxHeight,
+              child: const Center(child: CircularProgressIndicator()))
         else if (widget.isEmpty)
-          const SizedBox(
-            height: 400,
-            child: Center(
+          SizedBox(
+            height: widget.boxHeight,
+            child: const Center(
               child: Text('No data retrieved.'),
             ),
           )
