@@ -14,7 +14,7 @@ class AssetPerformanceWidget extends StatefulWidget {
   final TextStyle? textStyle;
   final Function(String period) fetchChartPricesCallback;
   final List<DataPoint> data;
-  final double previousPrice;
+  final num? previousPrice;
   final Stream<double> currentPricestream;
   final bool isFail;
   final bool isLoading;

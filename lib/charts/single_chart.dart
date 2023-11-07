@@ -20,7 +20,7 @@ class SingleChart extends StatefulWidget {
   final List<String>? labels; // the x-labels
   final String selectedPeriod; //string format of selected period
   final LinearGradient? gradient;
-  final num previousPrice;
+  final num? previousPrice;
   final TextStyle? textStyle;
   final bool isLoading;
   final bool isFail;
@@ -105,9 +105,9 @@ class _SingleChartState extends State<SingleChart> {
               stream: widget.currentPriceStream,
               builder: (context, snapshot) {
                 if (snapshot.data != null) {
-                  double priceChange = snapshot.data! - widget.previousPrice;
+                  double priceChange = snapshot.data! - widget.previousPrice!;
                   double priceChangePct =
-                      priceChange * 100 / widget.previousPrice;
+                      priceChange * 100 / widget.previousPrice!;
 
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -121,7 +121,9 @@ class _SingleChartState extends State<SingleChart> {
                               'Price (${widget.selectedPeriod}) ago:',
                               style: widget.textStyle,
                             ),
-                            Text(currencyFormat.format(widget.previousPrice),
+                            Text(
+                                currencyFormat
+                                    .format(widget.previousPrice ?? 'No data'),
                                 style: widget.textStyle)
                           ],
                         ),
