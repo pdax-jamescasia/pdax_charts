@@ -274,16 +274,19 @@ class _SingleChartState extends State<SingleChart> {
                           },
                         ))
                   ]),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: widget.labels!
-                    .map((label) => Text(
-                          label,
-                          style: widget.textStyle,
-                        ))
-                    .toList(),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: widget.labels!
+                      .map((label) => Text(
+                            label,
+                            style: widget.textStyle,
+                          ))
+                      .toList(),
+                ),
               )
             ],
           ),
