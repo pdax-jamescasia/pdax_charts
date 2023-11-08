@@ -277,7 +277,7 @@ class _SingleChartState extends State<SingleChart> {
               Row(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: widget.labels!
                     .map((label) => Text(
                           label,

@@ -8,6 +8,7 @@ import 'package:pdax_charts/charts/metadata_point.dart';
 import 'package:pdax_charts/charts/single_chart.dart';
 import 'package:pdax_charts/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:pdax_charts/date_utils.dart';
 
 class AssetPerformanceWidget extends StatefulWidget {
   final LinearGradient? gradient;
@@ -52,18 +53,24 @@ class _AssetPerformanceWidgetState extends State<AssetPerformanceWidget> {
     super.initState();
   }
 
-  List<String> getLabels(String period) {
-    // Todo
-    //calculate labels based on x-units from last data point
-    Map<String, List<String>> periodToLabelsMap = {
-      Constants.TWENTYFOUR_HOURS: ['12AM', '4AM', '8AM', '12PM', '4PM', '8PM'],
-      Constants.SEVEN_DAYS: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-      Constants.THIRTY_DAYS: ['12AM', '4AM', '8AM', '12PM', '4PM', '8PM'],
-      Constants.NINETY_DAYS: ['12AM', '4AM', '8AM', '12PM', '4PM', '8PM'],
-      Constants.ONE_YEAR: ['Jan', 'Apr', 'Jul', 'Aug', 'Oct', 'Dec'],
-    };
+  List<String> getLabels(String period, List<DataPoint> data) {
+    DateTime date1 =
+        DateTime.fromMillisecondsSinceEpoch(data.first.startTimestampUnixMilli);
+    DateTime date2 =
+        DateTime.fromMillisecondsSinceEpoch(data.last.endTimestampUnixMilli);
 
-    return periodToLabelsMap[period]!;
+    switch (period) {
+      case Constants.TWENTYFOUR_HOURS:
+        return [formatTimeOfDay(date1), formatTimeOfDay(date2)];
+      case Constants.SEVEN_DAYS:
+        return [formatDayOfWeek(date1), formatDayOfWeek(date2)];
+      case Constants.THIRTY_DAYS:
+        return [formatDateMonth(date1), formatDateMonth(date2)];
+      case Constants.NINETY_DAYS:
+        return [formatDateMonth(date1), formatDateMonth(date2)];
+      default:
+        return [];
+    }
   }
 
   @override
@@ -79,7 +86,7 @@ class _AssetPerformanceWidgetState extends State<AssetPerformanceWidget> {
           gradient: widget.gradient,
           isLoading: widget.isLoading,
           isFail: widget.isFail,
-          labels: getLabels(selectedPeriod),
+          labels: getLabels(selectedPeriod, widget.data),
           previousPrice: widget.previousPrice,
           currentPriceStream: widget.currentPricestream,
           textStyle: widget.textStyle,
