@@ -105,9 +105,10 @@ class _SingleChartState extends State<SingleChart> {
               stream: widget.currentPriceStream,
               builder: (context, snapshot) {
                 if (snapshot.data != null) {
-                  double priceChange = snapshot.data! - widget.previousPrice!;
+                  double priceChange =
+                      snapshot.data! - (widget.previousPrice ?? 0);
                   double priceChangePct =
-                      priceChange * 100 / widget.previousPrice!;
+                      priceChange * 100 / (widget.previousPrice ?? 0);
 
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
