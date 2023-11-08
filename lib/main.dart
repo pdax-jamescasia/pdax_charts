@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:pdax_charts/asset_performance_widget.dart';
 import 'package:pdax_charts/constants.dart';
 import 'package:pdax_charts/simple_line_chart_widget.dart';
 import 'package:flutter/material.dart';
@@ -97,14 +98,16 @@ class _MyHomePageState extends State<MyHomePage> {
           title: Text(widget.title),
         ),
         body: Column(children: [
-          // AssetPerformanceWidget(
-          //   gradient: gradientColors,
-          //   currentPricestream: currentPriceStreamController.stream,
-          //   textStyle: style,
-          //   data: data,
-          //   fetchChartPricesCallback: setData,
-          //   previousPrice: 3,
-          // ),
+          AssetPerformanceWidget(
+            isFail: false,
+            isLoading: false,
+            gradient: gradientColors,
+            currentPricestream: currentPriceStreamController.stream,
+            textStyle: style,
+            data: data,
+            fetchChartPricesCallback: setData,
+            previousPrice: 3,
+          ),
           Container(
               width: 400,
               height: 140,
