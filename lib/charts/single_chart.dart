@@ -166,7 +166,13 @@ class _SingleChartState extends State<SingleChart> {
                     ],
                   );
                 } else {
-                  return const SizedBox();
+                  return const SizedBox(
+                    height: 100,
+                    child: Center(
+                      child: Text(
+                          'Failed fetching prices. Please try again later'),
+                    ),
+                  );
                 }
               }),
         ),

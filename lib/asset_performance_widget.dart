@@ -64,7 +64,7 @@ class _AssetPerformanceWidgetState extends State<AssetPerformanceWidget> {
       case Constants.TWENTYFOUR_HOURS:
         return [formatTimeOfDay(date1), formatTimeOfDay(date2)];
       case Constants.SEVEN_DAYS:
-        return [formatDayOfWeek(date1), formatDayOfWeek(date2)];
+        return [formatDateMonth(date1), formatDateMonth(date2)];
       case Constants.THIRTY_DAYS:
         return [formatDateMonth(date1), formatDateMonth(date2)];
       case Constants.NINETY_DAYS:
