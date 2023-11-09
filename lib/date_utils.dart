@@ -1,23 +1,8 @@
 import 'package:intl/intl.dart';
 
 String formatTimeOfDay(DateTime dateTime) {
-  int hour = dateTime.hour;
-
-  // Determine if it's AM or PM
-  String period = hour < 12 ? 'AM' : 'PM';
-
-  // Convert the hour to 12-hour format
-  if (hour > 12) {
-    hour -= 12;
-  }
-  if (hour == 0) {
-    hour = 12;
-  }
-
-  // Construct the formatted string
-  String formattedTime = '$hour$period';
-
-  return formattedTime;
+  final DateFormat dateFormat = DateFormat('MMM d ha');
+  return dateFormat.format(dateTime);
 }
 
 String formatDayOfWeek(DateTime dateTime) {
