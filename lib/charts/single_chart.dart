@@ -219,13 +219,13 @@ class _SingleChartState extends State<SingleChart> {
                   legend: const Legend(isVisible: false),
                   tooltipBehavior: TooltipBehavior(
                       shouldAlwaysShow: true,
-                      activationMode: ActivationMode.longPress,
+                      activationMode: ActivationMode.singleTap,
                       borderWidth: 0.3,
                       borderColor: Colors.black,
                       enable: true,
                       elevation: 6,
                       shadowColor: Colors.black,
-                      tooltipPosition: TooltipPosition.auto,
+                      tooltipPosition: TooltipPosition.pointer,
                       color: const Color.fromARGB(255, 249, 249, 249),
                       canShowMarker: true,
                       builder: (data, point, series, pointIndex, seriesIndex) {
