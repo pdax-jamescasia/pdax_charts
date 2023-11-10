@@ -123,8 +123,9 @@ class _SingleChartState extends State<SingleChart> {
                               style: widget.textStyle,
                             ),
                             Text(
-                                currencyFormat
-                                    .format(widget.previousPrice ?? 'No data'),
+                                currencyFormat.format(widget.isLoading
+                                    ? 'Loading price'
+                                    : widget.previousPrice ?? 'No data'),
                                 style: widget.textStyle)
                           ],
                         ),
@@ -164,6 +165,14 @@ class _SingleChartState extends State<SingleChart> {
                         ),
                       )
                     ],
+                  );
+                } else if (snapshot.connectionState ==
+                    ConnectionState.waiting) {
+                  return const SizedBox(
+                    height: 100,
+                    child: Center(
+                      child: Text('Loading prices.'),
+                    ),
                   );
                 } else {
                   return const SizedBox(
