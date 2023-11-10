@@ -80,191 +80,208 @@ class _AssetPerformanceWidgetState extends State<AssetPerformanceWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return
-        // widget.isLoading
-        //     ? SizedBox(
-        //         height: boxHeight,
-        //         child: const Center(child: CircularProgressIndicator()),
-        //       )
-        //     : widget.isFail
-        //         ? SizedBox(
-        //             height: boxHeight,
-        //             child: const Center(
-        //               child: Text('Failed fetching data. Please try again later.'),
-        //             ),
-        //           )
-        //         :
-        Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        SingleChart(
-          selectedPeriod: selectedPeriod,
-          data: widget.data,
-          metadata: metadata,
-          gradient: widget.gradient,
-          isLoading: widget.isLoading,
-          isFail: widget.isFail,
-          labels: getLabels(selectedPeriod, widget.data),
-          previousPrice: widget.previousPrice,
-          currentPriceStream: widget.currentPricestream,
-          textStyle: widget.textStyle,
-        ),
-        const SizedBox(
-          height: 12,
-        ),
-        Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: gap, vertical: 4),
-                child: InkWell(
-                  borderRadius: const BorderRadius.all(Radius.circular(20)),
-                  onTap: () {
-                    setState(() {
-                      selectedPeriod = Constants.TWENTYFOUR_HOURS;
-                      widget
-                          .fetchChartPricesCallback(Constants.TWENTYFOUR_HOURS);
-                    });
-                  },
-                  child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                    decoration: BoxDecoration(
-                        color: selectedPeriod == Constants.TWENTYFOUR_HOURS
-                            ? Colors.grey.withOpacity(0.2)
-                            : Colors.transparent,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(20))),
-                    child: Text(
-                      Constants.TWENTYFOUR_HOURS,
-                      style: widget.textStyle!.copyWith(
-                          color: selectedPeriod == Constants.TWENTYFOUR_HOURS
-                              ? selectedColor
-                              : unselectedColor),
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: gap, vertical: 4),
-                child: InkWell(
-                  borderRadius: const BorderRadius.all(Radius.circular(20)),
-                  onTap: () {
-                    setState(() {
-                      selectedPeriod = Constants.SEVEN_DAYS;
-                      widget.fetchChartPricesCallback(Constants.SEVEN_DAYS);
-                    });
-                  },
-                  child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                    decoration: BoxDecoration(
-                        color: selectedPeriod == Constants.SEVEN_DAYS
-                            ? Colors.grey.withOpacity(0.2)
-                            : Colors.transparent,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(20))),
-                    child: Text(
-                      Constants.SEVEN_DAYS,
-                      style: widget.textStyle!.copyWith(
-                          color: selectedPeriod == Constants.SEVEN_DAYS
-                              ? selectedColor
-                              : unselectedColor),
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: gap, vertical: 4),
-                child: InkWell(
-                  borderRadius: const BorderRadius.all(Radius.circular(20)),
-                  onTap: () {
-                    setState(() {
-                      selectedPeriod = Constants.THIRTY_DAYS;
-                      widget.fetchChartPricesCallback(Constants.THIRTY_DAYS);
-                    });
-                  },
-                  child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                    decoration: BoxDecoration(
-                        color: selectedPeriod == Constants.THIRTY_DAYS
-                            ? Colors.grey.withOpacity(0.2)
-                            : Colors.transparent,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(20))),
-                    child: Text(
-                      Constants.THIRTY_DAYS,
-                      style: widget.textStyle!.copyWith(
-                          color: selectedPeriod == Constants.THIRTY_DAYS
-                              ? selectedColor
-                              : unselectedColor),
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: gap, vertical: 4),
-                child: InkWell(
-                  borderRadius: const BorderRadius.all(Radius.circular(20)),
-                  onTap: () {
-                    setState(() {
-                      selectedPeriod = Constants.NINETY_DAYS;
-                      widget.fetchChartPricesCallback(Constants.NINETY_DAYS);
-                    });
-                  },
-                  child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                    decoration: BoxDecoration(
-                        color: selectedPeriod == Constants.NINETY_DAYS
-                            ? Colors.grey.withOpacity(0.2)
-                            : Colors.transparent,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(20))),
-                    child: Text(
-                      Constants.NINETY_DAYS,
-                      style: widget.textStyle!.copyWith(
-                          color: selectedPeriod == Constants.NINETY_DAYS
-                              ? selectedColor
-                              : unselectedColor),
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: gap, vertical: 4),
-                child: InkWell(
-                  borderRadius: const BorderRadius.all(Radius.circular(20)),
-                  onTap: () {
-                    setState(() {
-                      selectedPeriod = Constants.ONE_YEAR;
-                      widget.fetchChartPricesCallback(Constants.ONE_YEAR);
-                    });
-                  },
-                  child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                    decoration: BoxDecoration(
-                        color: selectedPeriod == Constants.ONE_YEAR
-                            ? Colors.grey.withOpacity(0.2)
-                            : Colors.transparent,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(20))),
-                    child: Text(
-                      Constants.ONE_YEAR,
-                      style: widget.textStyle!.copyWith(
-                          color: selectedPeriod == Constants.ONE_YEAR
-                              ? selectedColor
-                              : unselectedColor),
-                    ),
-                  ),
+    return widget.isLoading
+        ? SizedBox(
+            height: boxHeight,
+            child: const Center(child: CircularProgressIndicator()),
+          )
+        : widget.isFail
+            ? SizedBox(
+                height: boxHeight,
+                child: const Center(
+                  child: Text('Failed fetching data. Please try again later.'),
                 ),
               )
-            ])
-      ],
-    );
+            : Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SingleChart(
+                    selectedPeriod: selectedPeriod,
+                    data: widget.data,
+                    metadata: metadata,
+                    gradient: widget.gradient,
+                    isLoading: widget.isLoading,
+                    isFail: widget.isFail,
+                    labels: getLabels(selectedPeriod, widget.data),
+                    previousPrice: widget.previousPrice,
+                    currentPriceStream: widget.currentPricestream,
+                    textStyle: widget.textStyle,
+                  ),
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: gap, vertical: 4),
+                          child: InkWell(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(20)),
+                            onTap: () {
+                              setState(() {
+                                selectedPeriod = Constants.TWENTYFOUR_HOURS;
+                                widget.fetchChartPricesCallback(
+                                    Constants.TWENTYFOUR_HOURS);
+                              });
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 12, vertical: 6),
+                              decoration: BoxDecoration(
+                                  color: selectedPeriod ==
+                                          Constants.TWENTYFOUR_HOURS
+                                      ? Colors.grey.withOpacity(0.2)
+                                      : Colors.transparent,
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(20))),
+                              child: Text(
+                                Constants.TWENTYFOUR_HOURS,
+                                style: widget.textStyle!.copyWith(
+                                    color: selectedPeriod ==
+                                            Constants.TWENTYFOUR_HOURS
+                                        ? selectedColor
+                                        : unselectedColor),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: gap, vertical: 4),
+                          child: InkWell(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(20)),
+                            onTap: () {
+                              setState(() {
+                                selectedPeriod = Constants.SEVEN_DAYS;
+                                widget.fetchChartPricesCallback(
+                                    Constants.SEVEN_DAYS);
+                              });
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 12, vertical: 6),
+                              decoration: BoxDecoration(
+                                  color: selectedPeriod == Constants.SEVEN_DAYS
+                                      ? Colors.grey.withOpacity(0.2)
+                                      : Colors.transparent,
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(20))),
+                              child: Text(
+                                Constants.SEVEN_DAYS,
+                                style: widget.textStyle!.copyWith(
+                                    color:
+                                        selectedPeriod == Constants.SEVEN_DAYS
+                                            ? selectedColor
+                                            : unselectedColor),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: gap, vertical: 4),
+                          child: InkWell(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(20)),
+                            onTap: () {
+                              setState(() {
+                                selectedPeriod = Constants.THIRTY_DAYS;
+                                widget.fetchChartPricesCallback(
+                                    Constants.THIRTY_DAYS);
+                              });
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 12, vertical: 6),
+                              decoration: BoxDecoration(
+                                  color: selectedPeriod == Constants.THIRTY_DAYS
+                                      ? Colors.grey.withOpacity(0.2)
+                                      : Colors.transparent,
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(20))),
+                              child: Text(
+                                Constants.THIRTY_DAYS,
+                                style: widget.textStyle!.copyWith(
+                                    color:
+                                        selectedPeriod == Constants.THIRTY_DAYS
+                                            ? selectedColor
+                                            : unselectedColor),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: gap, vertical: 4),
+                          child: InkWell(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(20)),
+                            onTap: () {
+                              setState(() {
+                                selectedPeriod = Constants.NINETY_DAYS;
+                                widget.fetchChartPricesCallback(
+                                    Constants.NINETY_DAYS);
+                              });
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 12, vertical: 6),
+                              decoration: BoxDecoration(
+                                  color: selectedPeriod == Constants.NINETY_DAYS
+                                      ? Colors.grey.withOpacity(0.2)
+                                      : Colors.transparent,
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(20))),
+                              child: Text(
+                                Constants.NINETY_DAYS,
+                                style: widget.textStyle!.copyWith(
+                                    color:
+                                        selectedPeriod == Constants.NINETY_DAYS
+                                            ? selectedColor
+                                            : unselectedColor),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: gap, vertical: 4),
+                          child: InkWell(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(20)),
+                            onTap: () {
+                              setState(() {
+                                selectedPeriod = Constants.ONE_YEAR;
+                                widget.fetchChartPricesCallback(
+                                    Constants.ONE_YEAR);
+                              });
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 12, vertical: 6),
+                              decoration: BoxDecoration(
+                                  color: selectedPeriod == Constants.ONE_YEAR
+                                      ? Colors.grey.withOpacity(0.2)
+                                      : Colors.transparent,
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(20))),
+                              child: Text(
+                                Constants.ONE_YEAR,
+                                style: widget.textStyle!.copyWith(
+                                    color: selectedPeriod == Constants.ONE_YEAR
+                                        ? selectedColor
+                                        : unselectedColor),
+                              ),
+                            ),
+                          ),
+                        )
+                      ])
+                ],
+              );
   }
 }
