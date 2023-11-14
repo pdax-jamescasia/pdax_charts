@@ -223,7 +223,8 @@ class _SingleChartState extends State<SingleChart> {
                   borderColor: Colors.transparent,
                   primaryXAxis: NumericAxis(
                     isVisible: true,
-                    majorTickLines: const MajorTickLines(size: 0),
+                    minorTickLines: const MinorTickLines(size: 0),
+                    // majorTickLines: const MajorTickLines(size: 0),
                   ),
                   primaryYAxis: NumericAxis(isVisible: false),
                   legend: const Legend(isVisible: false),
