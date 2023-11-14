@@ -214,6 +214,7 @@ class _SingleChartState extends State<SingleChart> {
           Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               SfCartesianChart(
                   borderWidth: 0,
@@ -306,16 +307,19 @@ class _SingleChartState extends State<SingleChart> {
                           },
                         ))
                   ]),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: widget.data.map((dataPoint) {
-                  return Container(
-                    width: 1,
-                    height: 4,
-                    color: Colors.grey,
-                  );
-                }).toList(),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: widget.data.map((dataPoint) {
+                    return Container(
+                      width: 1,
+                      height: 8,
+                      color: Colors.grey,
+                    );
+                  }).toList(),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
