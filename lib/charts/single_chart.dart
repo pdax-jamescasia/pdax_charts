@@ -222,7 +222,7 @@ class _SingleChartState extends State<SingleChart> {
                   backgroundColor: Colors.transparent,
                   borderColor: Colors.transparent,
                   primaryXAxis: NumericAxis(
-                    isVisible: true,
+                    isVisible: false,
                     minorTickLines: const MinorTickLines(size: 0),
                     // majorTickLines: const MajorTickLines(size: 0),
                   ),
@@ -306,6 +306,17 @@ class _SingleChartState extends State<SingleChart> {
                           },
                         ))
                   ]),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: widget.data.map((dataPoint) {
+                  return Container(
+                    width: 1,
+                    height: 4,
+                    color: Colors.grey,
+                  );
+                }).toList(),
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Row(
