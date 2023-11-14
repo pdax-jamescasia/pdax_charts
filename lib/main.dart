@@ -99,6 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: Column(children: [
           AssetPerformanceWidget(
+            showMax: false,
             isFail: false,
             isLoading: false,
             gradient: gradientColors,

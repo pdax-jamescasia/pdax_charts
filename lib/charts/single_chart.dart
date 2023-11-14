@@ -21,7 +21,8 @@ class SingleChart extends StatefulWidget {
   final String selectedPeriod; //string format of selected period
   final LinearGradient? gradient;
   final num? previousPrice;
-  final TextStyle? textStyle;
+  final TextStyle textStyle;
+  final bool showMax;
   final bool isLoading;
   final bool isFail;
   get isEmpty => data.isEmpty;
@@ -34,7 +35,8 @@ class SingleChart extends StatefulWidget {
       required this.currentPriceStream,
       required this.isLoading,
       required this.isFail,
-      this.textStyle,
+      required this.showMax,
+      required this.textStyle,
       this.metadata,
       this.labels,
       this.gradient});
@@ -157,8 +159,13 @@ class _SingleChartState extends State<SingleChart> {
                             Text('Price change:', style: widget.textStyle),
                             (snapshot.hasData)
                                 ? Text(
-                                    '(${priceChangePct.toStringAsFixed(2)} %) ${currencyFormat.format(priceChange)}',
-                                    style: widget.textStyle)
+                                    '(${priceChangePct > 0 ? '+' : ''}${priceChangePct.toStringAsFixed(2)} %) ${currencyFormat.format(priceChange)}',
+                                    style: widget.textStyle!.copyWith(
+                                        color: priceChangePct.isNegative
+                                            ? Colors.red
+                                            : priceChangePct > 0
+                                                ? Colors.green
+                                                : widget.textStyle!.color))
                                 : Text('Loading prices',
                                     style: widget.textStyle)
                           ],
@@ -214,7 +221,10 @@ class _SingleChartState extends State<SingleChart> {
                   plotAreaBorderWidth: 0,
                   backgroundColor: Colors.transparent,
                   borderColor: Colors.transparent,
-                  primaryXAxis: NumericAxis(isVisible: false),
+                  primaryXAxis: NumericAxis(
+                    isVisible: true,
+                    majorTickLines: const MajorTickLines(size: 0),
+                  ),
                   primaryYAxis: NumericAxis(isVisible: false),
                   legend: const Legend(isVisible: false),
                   tooltipBehavior: TooltipBehavior(
@@ -282,7 +292,9 @@ class _SingleChartState extends State<SingleChart> {
                           isVisible: true,
                           builder:
                               (data, point, series, pointIndex, seriesIndex) {
-                            if ([maxIdx, minIdx].contains(pointIndex)) {
+                            if (!widget.showMax) {
+                              return const SizedBox();
+                            } else if ([maxIdx, minIdx].contains(pointIndex)) {
                               return Text(
                                 currencyFormat.format(data.averagePrice),
                                 style: widget.textStyle,

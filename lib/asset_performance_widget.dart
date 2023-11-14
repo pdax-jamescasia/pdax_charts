@@ -12,20 +12,22 @@ import 'package:pdax_charts/date_utils.dart';
 
 class AssetPerformanceWidget extends StatefulWidget {
   final LinearGradient? gradient;
-  final TextStyle? textStyle;
+  final TextStyle textStyle;
   final Function(String period) fetchChartPricesCallback;
   final List<DataPoint> data;
   final num? previousPrice;
   final Stream<double> currentPricestream;
   final bool isFail;
   final bool isLoading;
+  final bool showMax;
   const AssetPerformanceWidget(
       {super.key,
       this.gradient,
-      this.textStyle,
+      required this.textStyle,
       required this.fetchChartPricesCallback,
       required this.isFail,
       required this.isLoading,
+      required this.showMax,
       required this.data,
       required this.previousPrice,
       required this.currentPricestream});
@@ -89,6 +91,7 @@ class _AssetPerformanceWidgetState extends State<AssetPerformanceWidget> {
           data: widget.data,
           metadata: metadata,
           gradient: widget.gradient,
+          showMax: widget.showMax,
           isLoading: widget.isLoading,
           isFail: widget.isFail,
           labels: getLabels(selectedPeriod, widget.data),
