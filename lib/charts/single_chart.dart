@@ -311,7 +311,7 @@ class _SingleChartState extends State<SingleChart> {
                   children: widget.data.map((dataPoint) {
                     return Container(
                       width: 1,
-                      height: 8,
+                      height: 6,
                       color: Colors.grey,
                     );
                   }).toList(),
