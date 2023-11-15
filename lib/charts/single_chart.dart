@@ -243,15 +243,13 @@ class _SingleChartState extends State<SingleChart> {
                       builder: (data, point, series, pointIndex, seriesIndex) {
                         return RichText(
                           text: TextSpan(
+                            text: currencyFormat
+                                .format(widget.data[pointIndex].averagePrice),
+                            style: TextStyle(
+                                color: Colors.blue,
+                                fontFamily: widget.textStyle.fontFamily,
+                                fontWeight: FontWeight.w500),
                             children: <TextSpan>[
-                              TextSpan(
-                                text: currencyFormat.format(
-                                    widget.data[pointIndex].averagePrice),
-                                style: TextStyle(
-                                    color: Colors.blue,
-                                    fontFamily: widget.textStyle.fontFamily,
-                                    fontWeight: FontWeight.w500),
-                              ),
                               TextSpan(
                                 text: getMiddleTime(
                                     widget.data[pointIndex]
