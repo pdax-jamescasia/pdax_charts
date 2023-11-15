@@ -235,10 +235,10 @@ class _SingleChartState extends State<SingleChart> {
                       // borderWidth: 0.3,
                       // borderColor: Colors.black,
                       enable: true,
-                      // elevation: 6,
-                      // shadowColor: Colors.black,
-                      // tooltipPosition: TooltipPosition.pointer,
-                      // color: const Color.fromARGB(255, 249, 249, 249),
+                      elevation: 6,
+                      shadowColor: Colors.black,
+                      tooltipPosition: TooltipPosition.pointer,
+                      color: const Color.fromARGB(255, 249, 249, 249),
                       canShowMarker: true,
                       builder: (data, point, series, pointIndex, seriesIndex) {
                         // return Text(
