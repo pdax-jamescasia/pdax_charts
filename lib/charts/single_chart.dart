@@ -272,33 +272,37 @@ class _SingleChartState extends State<SingleChart> {
                         //   ),
                         // );
                         // return Text('adsfadf',style: TextS,)
-                        return Column(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              'asdfasf'
-                              // currencyFormat
-                              //     .format(widget.data[pointIndex].averagePrice)
-                              ,
-                              style: TextStyle(
-                                  color: Colors.blue,
-                                  fontFamily: widget.textStyle.fontFamily,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                            Text(
-                              ';aadf',
-                              // getMiddleTime(
-                              //     widget
-                              //         .data[pointIndex].startTimestampUnixMilli,
-                              //     widget
-                              //         .data[pointIndex].endTimestampUnixMilli),
-                              style: TextStyle(
-                                  fontFamily: widget.textStyle.fontFamily,
-                                  fontWeight: FontWeight.w400),
-                            ),
-                          ],
+                        return Padding(
+                          padding: const EdgeInsets.all(4),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                data.toString()
+
+                                // currencyFormat.format(
+                                //     widget.data[pointIndex].averagePrice)
+                                ,
+                                style: TextStyle(
+                                    color: Colors.blue,
+                                    fontFamily: widget.textStyle.fontFamily,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              Text(
+                                point.toString(),
+                                // getMiddleTime(
+                                //     widget
+                                //         .data[pointIndex].startTimestampUnixMilli,
+                                //     widget
+                                //         .data[pointIndex].endTimestampUnixMilli),
+                                style: TextStyle(
+                                    fontFamily: widget.textStyle.fontFamily,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ],
+                          ),
                         );
                       }),
                   series: <ChartSeries<DataPoint, dynamic>>[
