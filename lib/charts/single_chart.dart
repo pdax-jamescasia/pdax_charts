@@ -2,6 +2,7 @@ import 'package:pdax_charts/charts/metadata_point.dart';
 import 'package:flutter/material.dart';
 import 'package:pdax_charts/constants.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 import 'data_point.dart';
 import 'dart:async';
 import 'package:intl/intl.dart';
@@ -318,6 +319,37 @@ class _SingleChartState extends State<SingleChart> {
                   }).toList(),
                 ),
               ),
+              Container(
+                  child: SfSparkLineChart(
+                trackball: SparkChartTrackball(
+                    activationMode: SparkChartActivationMode.tap,
+                    dashArray: [4, 4],
+                    width: 1,
+                    tooltipFormatter: (details) {
+                      return details.y.toString();
+                    }),
+                color: Colors.green,
+                data: const <double>[
+                  0,
+                  0,
+                  -6,
+                  0,
+                  1,
+                  -2,
+                  7,
+                  -7,
+                  -4,
+                  -10,
+                  13,
+                  -6,
+                  7,
+                  5,
+                  11,
+                  5,
+                  3,
+                ],
+                negativePointColor: Colors.red,
+              )),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Row(
