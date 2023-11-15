@@ -310,6 +310,8 @@ class _SingleChartState extends State<SingleChart> {
                       ]),
                   Positioned(
                     bottom: 0,
+                    left: 0,
+                    right: 0,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 12),
                       child: Row(
