@@ -309,7 +309,7 @@ class _SingleChartState extends State<SingleChart> {
                             ))
                       ]),
                   Positioned(
-                    bottom: 0,
+                    bottom: 10,
                     left: 0,
                     right: 0,
                     child: Padding(
