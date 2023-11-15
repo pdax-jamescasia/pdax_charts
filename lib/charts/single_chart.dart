@@ -46,6 +46,7 @@ class SingleChart extends StatefulWidget {
 }
 
 class _SingleChartState extends State<SingleChart> {
+  bool shownTooltip = false;
   NumberFormat currencyFormat =
       NumberFormat.currency(locale: 'en_US', symbol: '₱', decimalDigits: 2);
 
@@ -110,9 +111,6 @@ class _SingleChartState extends State<SingleChart> {
             ),
           );
         });
-    Timer(const Duration(milliseconds: 400), () {
-      _tooltipBehavior.showByIndex(0, widget.data.length - 1);
-    });
 
     currencyFormat.maximumFractionDigits = 2;
     super.initState();
@@ -136,6 +134,12 @@ class _SingleChartState extends State<SingleChart> {
         maxIdx = idx;
       }
     });
+    if (!shownTooltip) {
+      shownTooltip = true;
+      Timer(const Duration(milliseconds: 300), () {
+        _tooltipBehavior.showByIndex(0, widget.data.length - 1);
+      });
+    }
 
     return Column(
       mainAxisSize: MainAxisSize.min,
