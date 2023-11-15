@@ -241,6 +241,21 @@ class _SingleChartState extends State<SingleChart> {
                       // color: const Color.fromARGB(255, 249, 249, 249),
                       // canShowMarker: true,
                       builder: (data, point, series, pointIndex, seriesIndex) {
+                        return RichText(
+                          text: TextSpan(
+                            text: 'Hello ',
+                            style: DefaultTextStyle.of(context).style,
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: 'bold',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.blue),
+                              ),
+                              TextSpan(text: ' world!'),
+                            ],
+                          ),
+                        );
                         // return Text('adsfadf',style: TextS,)
                         return Column(
                           mainAxisSize: MainAxisSize.min,
