@@ -118,11 +118,11 @@ class _SingleChartState extends State<SingleChart> {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Timer(const Duration(milliseconds: 1000), () {
-        _tooltipBehavior.showByIndex(0, widget.data.length - 1);
-      });
-    });
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    // Timer(const Duration(milliseconds: 1000), () {
+    _tooltipBehavior.showByIndex(0, widget.data.length - 1);
+    // });
+    // });
     // calculate min max
     double max_ = double.negativeInfinity;
     double min_ = double.infinity;
