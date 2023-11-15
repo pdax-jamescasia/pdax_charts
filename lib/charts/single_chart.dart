@@ -122,12 +122,8 @@ class _SingleChartState extends State<SingleChart> {
     int maxIdx = 0;
     int minIdx = 0;
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      // Added 300 milliseconds to the series animation duration and provided it as the duration for the Timer.
-      Timer(Duration(milliseconds: 300), () {
-        // Activated the tooltip of the second data point’s index.
-        _tooltipBehavior.showByIndex(0, widget.data.length - 1);
-      });
+    Timer(const Duration(milliseconds: 300), () {
+      _tooltipBehavior.showByIndex(0, widget.data.length - 1);
     });
 
     widget.data.asMap().forEach((idx, dataPoint) {
