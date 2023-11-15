@@ -280,7 +280,9 @@ class _SingleChartState extends State<SingleChart> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
-                                widget.data[0].averagePrice.toString()
+                                widget.data[0].averagePrice.toString() +
+                                    'asdf' +
+                                    pointIndex.toString()
 
                                 // currencyFormat.format(
                                 //     widget.data[pointIndex].averagePrice)
