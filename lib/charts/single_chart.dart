@@ -2,7 +2,6 @@ import 'package:pdax_charts/charts/metadata_point.dart';
 import 'package:flutter/material.dart';
 import 'package:pdax_charts/constants.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 import 'data_point.dart';
 import 'dart:async';
 import 'package:intl/intl.dart';
@@ -230,18 +229,17 @@ class _SingleChartState extends State<SingleChart> {
                   ),
                   primaryYAxis: NumericAxis(isVisible: false),
                   legend: const Legend(isVisible: false),
-                  onTooltipRender: (tooltipArgs) {},
                   tooltipBehavior: TooltipBehavior(
                       shouldAlwaysShow: true,
-                      activationMode: ActivationMode.singleTap,
-                      borderWidth: 0.3,
-                      borderColor: Colors.black,
+                      // activationMode: ActivationMode.singleTap,
+                      // borderWidth: 0.3,
+                      // borderColor: Colors.black,
                       enable: true,
                       // elevation: 6,
-                      shadowColor: Colors.black,
+                      // shadowColor: Colors.black,
                       // tooltipPosition: TooltipPosition.pointer,
                       // color: const Color.fromARGB(255, 249, 249, 249),
-                      canShowMarker: true,
+                      // canShowMarker: true,
                       builder: (data, point, series, pointIndex, seriesIndex) {
                         return Padding(
                             padding: const EdgeInsets.symmetric(
@@ -319,37 +317,6 @@ class _SingleChartState extends State<SingleChart> {
                   }).toList(),
                 ),
               ),
-              Container(
-                  child: SfSparkLineChart(
-                trackball: SparkChartTrackball(
-                    activationMode: SparkChartActivationMode.tap,
-                    dashArray: [4, 4],
-                    width: 1,
-                    tooltipFormatter: (details) {
-                      return details.y.toString();
-                    }),
-                color: Colors.green,
-                data: const <double>[
-                  0,
-                  0,
-                  -6,
-                  0,
-                  1,
-                  -2,
-                  7,
-                  -7,
-                  -4,
-                  -10,
-                  13,
-                  -6,
-                  7,
-                  5,
-                  11,
-                  5,
-                  3,
-                ],
-                negativePointColor: Colors.red,
-              )),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Row(
