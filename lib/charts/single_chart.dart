@@ -241,6 +241,14 @@ class _SingleChartState extends State<SingleChart> {
                       // color: const Color.fromARGB(255, 249, 249, 249),
                       canShowMarker: true,
                       builder: (data, point, series, pointIndex, seriesIndex) {
+                        return Text(
+                          '${currencyFormat.format(widget.data[pointIndex].averagePrice)}\n${getMiddleTime(widget.data[pointIndex].startTimestampUnixMilli, widget.data[pointIndex].endTimestampUnixMilli)}',
+                          style: TextStyle(
+                              color: Colors.blue,
+                              fontFamily: widget.textStyle.fontFamily,
+                              fontWeight: FontWeight.w500),
+                          textAlign: TextAlign.center,
+                        );
                         return RichText(
                           text: TextSpan(
                             text: currencyFormat
