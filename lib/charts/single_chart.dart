@@ -235,24 +235,33 @@ class _SingleChartState extends State<SingleChart> {
                       // borderWidth: 0.3,
                       // borderColor: Colors.black,
                       enable: true,
-                      // elevation: 6,
-                      // shadowColor: Colors.black,
-                      // tooltipPosition: TooltipPosition.pointer,
-                      // color: const Color.fromARGB(255, 249, 249, 249),
-                      // canShowMarker: true,
+                      elevation: 6,
+                      shadowColor: Colors.black,
+                      tooltipPosition: TooltipPosition.pointer,
+                      color: const Color.fromARGB(255, 249, 249, 249),
+                      canShowMarker: true,
                       builder: (data, point, series, pointIndex, seriesIndex) {
                         return RichText(
                           text: TextSpan(
-                            text: 'Hello ',
-                            style: DefaultTextStyle.of(context).style,
                             children: <TextSpan>[
                               TextSpan(
-                                text: 'bold',
+                                text: currencyFormat.format(
+                                    widget.data[pointIndex].averagePrice),
                                 style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.blue),
+                                    color: Colors.blue,
+                                    fontFamily: widget.textStyle.fontFamily,
+                                    fontWeight: FontWeight.w500),
                               ),
-                              TextSpan(text: ' world!'),
+                              TextSpan(
+                                text: getMiddleTime(
+                                    widget.data[pointIndex]
+                                        .startTimestampUnixMilli,
+                                    widget.data[pointIndex]
+                                        .endTimestampUnixMilli),
+                                style: TextStyle(
+                                    fontFamily: widget.textStyle.fontFamily,
+                                    fontWeight: FontWeight.w400),
+                              ),
                             ],
                           ),
                         );
