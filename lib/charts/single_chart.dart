@@ -135,8 +135,7 @@ class _SingleChartState extends State<SingleChart> {
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      // Added 300 milliseconds to the series animation duration and provided it as the duration for the Timer.
-      Timer(const Duration(milliseconds: 400), () {
+      Timer(const Duration(milliseconds: 1000), () {
         _tooltipBehavior.showByIndex(0, widget.data.length - 1);
       });
     });
