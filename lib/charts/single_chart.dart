@@ -110,6 +110,10 @@ class _SingleChartState extends State<SingleChart> {
             ),
           );
         });
+    Timer(const Duration(milliseconds: 400), () {
+      _tooltipBehavior.showByIndex(0, widget.data.length - 1);
+    });
+
     currencyFormat.maximumFractionDigits = 2;
     super.initState();
   }
@@ -121,10 +125,6 @@ class _SingleChartState extends State<SingleChart> {
     double min_ = double.infinity;
     int maxIdx = 0;
     int minIdx = 0;
-
-    Timer(const Duration(milliseconds: 300), () {
-      _tooltipBehavior.showByIndex(0, widget.data.length - 1);
-    });
 
     widget.data.asMap().forEach((idx, dataPoint) {
       if (dataPoint.averagePrice < min_) {
