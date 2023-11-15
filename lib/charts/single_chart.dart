@@ -258,69 +258,77 @@ class _SingleChartState extends State<SingleChart> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SfCartesianChart(
-                  borderWidth: 0,
-                  plotAreaBorderColor: Colors.transparent,
-                  plotAreaBorderWidth: 0,
-                  backgroundColor: Colors.transparent,
-                  borderColor: Colors.transparent,
-                  primaryXAxis: NumericAxis(
-                    isVisible: false,
-                    minorTickLines: const MinorTickLines(size: 0),
-                    // majorTickLines: const MajorTickLines(size: 0),
+              Stack(
+                children: [
+                  SfCartesianChart(
+                      borderWidth: 0,
+                      plotAreaBorderColor: Colors.transparent,
+                      plotAreaBorderWidth: 0,
+                      backgroundColor: Colors.transparent,
+                      borderColor: Colors.transparent,
+                      primaryXAxis: NumericAxis(
+                        isVisible: false,
+                        minorTickLines: const MinorTickLines(size: 0),
+                        // majorTickLines: const MajorTickLines(size: 0),
+                      ),
+                      primaryYAxis: NumericAxis(isVisible: false),
+                      legend: const Legend(isVisible: false),
+                      tooltipBehavior: _tooltipBehavior,
+                      series: <ChartSeries<DataPoint, dynamic>>[
+                        AreaSeries<DataPoint, dynamic>(
+                            dataSource: widget.data,
+                            gradient: widget.gradient,
+                            enableTooltip: true,
+                            xValueMapper: (DataPoint d, _) =>
+                                d.startTimestampUnixMilli,
+                            yValueMapper: (DataPoint d, _) => d.averagePrice,
+                            borderWidth: 3,
+                            borderColor: const Color.fromARGB(255, 3, 128, 230),
+                            markerSettings: const MarkerSettings(
+                                isVisible: false,
+                                shape: DataMarkerType.circle,
+                                color: Colors.black),
+                            dataLabelSettings: DataLabelSettings(
+                              overflowMode: OverflowMode.shift,
+                              labelPosition: ChartDataLabelPosition.inside,
+                              isVisible: true,
+                              builder: (data, point, series, pointIndex,
+                                  seriesIndex) {
+                                if (!widget.showMax) {
+                                  return const SizedBox();
+                                } else if ([maxIdx, minIdx]
+                                    .contains(pointIndex)) {
+                                  return Text(
+                                    currencyFormat.format(data.averagePrice),
+                                    style: widget.textStyle,
+                                  );
+                                } else {
+                                  return const SizedBox();
+                                }
+                              },
+                            ))
+                      ]),
+                  Positioned(
+                    bottom: 0,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: widget.data.map((dataPoint) {
+                          return Container(
+                            width: 1,
+                            height: 6,
+                            color: Colors.grey,
+                          );
+                        }).toList(),
+                      ),
+                    ),
                   ),
-                  primaryYAxis: NumericAxis(isVisible: false),
-                  legend: const Legend(isVisible: false),
-                  tooltipBehavior: _tooltipBehavior,
-                  series: <ChartSeries<DataPoint, dynamic>>[
-                    AreaSeries<DataPoint, dynamic>(
-                        dataSource: widget.data,
-                        gradient: widget.gradient,
-                        enableTooltip: true,
-                        xValueMapper: (DataPoint d, _) =>
-                            d.startTimestampUnixMilli,
-                        yValueMapper: (DataPoint d, _) => d.averagePrice,
-                        borderWidth: 3,
-                        borderColor: const Color.fromARGB(255, 3, 128, 230),
-                        markerSettings: const MarkerSettings(
-                            isVisible: false,
-                            shape: DataMarkerType.circle,
-                            color: Colors.black),
-                        dataLabelSettings: DataLabelSettings(
-                          overflowMode: OverflowMode.shift,
-                          labelPosition: ChartDataLabelPosition.inside,
-                          isVisible: true,
-                          builder:
-                              (data, point, series, pointIndex, seriesIndex) {
-                            if (!widget.showMax) {
-                              return const SizedBox();
-                            } else if ([maxIdx, minIdx].contains(pointIndex)) {
-                              return Text(
-                                currencyFormat.format(data.averagePrice),
-                                style: widget.textStyle,
-                              );
-                            } else {
-                              return const SizedBox();
-                            }
-                          },
-                        ))
-                  ]),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: widget.data.map((dataPoint) {
-                    return Container(
-                      width: 1,
-                      height: 6,
-                      color: Colors.grey,
-                    );
-                  }).toList(),
-                ),
+                ],
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
