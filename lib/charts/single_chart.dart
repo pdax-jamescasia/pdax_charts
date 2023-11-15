@@ -280,7 +280,7 @@ class _SingleChartState extends State<SingleChart> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
-                                data.toString()
+                                data.averagePrice
 
                                 // currencyFormat.format(
                                 //     widget.data[pointIndex].averagePrice)
@@ -291,7 +291,8 @@ class _SingleChartState extends State<SingleChart> {
                                     fontWeight: FontWeight.w500),
                               ),
                               Text(
-                                point.toString(),
+                                getMiddleTime(data.startTimestampUnixMilli,
+                                    data.endTimestampUnixMilli),
                                 // getMiddleTime(
                                 //     widget
                                 //         .data[pointIndex].startTimestampUnixMilli,
