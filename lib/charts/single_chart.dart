@@ -242,34 +242,31 @@ class _SingleChartState extends State<SingleChart> {
                       // canShowMarker: true,
                       builder: (data, point, series, pointIndex, seriesIndex) {
                         // return Text('adsfadf',style: TextS,)
-                        return Container(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 2, horizontal: 3),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  currencyFormat.format(
-                                      widget.data[pointIndex].averagePrice),
-                                  style: TextStyle(
-                                      color: Colors.blue,
-                                      fontFamily: widget.textStyle.fontFamily,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                Text(
-                                  getMiddleTime(
-                                      widget.data[pointIndex]
-                                          .startTimestampUnixMilli,
-                                      widget.data[pointIndex]
-                                          .endTimestampUnixMilli),
-                                  style: TextStyle(
-                                      fontFamily: widget.textStyle.fontFamily,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                              ],
-                            ));
+                        return Column(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              currencyFormat
+                                  .format(widget.data[pointIndex].averagePrice),
+                              style: TextStyle(
+                                  color: Colors.blue,
+                                  fontFamily: widget.textStyle.fontFamily,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            Text(
+                              getMiddleTime(
+                                  widget
+                                      .data[pointIndex].startTimestampUnixMilli,
+                                  widget
+                                      .data[pointIndex].endTimestampUnixMilli),
+                              style: TextStyle(
+                                  fontFamily: widget.textStyle.fontFamily,
+                                  fontWeight: FontWeight.w400),
+                            ),
+                          ],
+                        );
                       }),
                   series: <ChartSeries<DataPoint, dynamic>>[
                     AreaSeries<DataPoint, dynamic>(
