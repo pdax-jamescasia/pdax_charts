@@ -112,16 +112,17 @@ class _SingleChartState extends State<SingleChart> {
         });
 
     currencyFormat.maximumFractionDigits = 2;
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Timer(const Duration(milliseconds: 1000), () {
-        _tooltipBehavior.showByIndex(0, widget.data.length - 1);
-      });
-    });
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Timer(const Duration(milliseconds: 1000), () {
+        _tooltipBehavior.showByIndex(0, widget.data.length - 1);
+      });
+    });
     // calculate min max
     double max_ = double.negativeInfinity;
     double min_ = double.infinity;
@@ -313,7 +314,7 @@ class _SingleChartState extends State<SingleChart> {
                     left: 0,
                     right: 0,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
