@@ -293,14 +293,14 @@ class _SingleChartState extends State<SingleChart> {
                                     fontWeight: FontWeight.w500),
                               ),
                               Text(
-                                'adf',
+                                // 'adf',
                                 // getMiddleTime(data.startTimestampUnixMilli,
                                 //     data.endTimestampUnixMilli),
-                                // getMiddleTime(
-                                //     widget
-                                //         .data[pointIndex].startTimestampUnixMilli,
-                                //     widget
-                                //         .data[pointIndex].endTimestampUnixMilli),
+                                getMiddleTime(
+                                    widget.data[pointIndex]
+                                        .startTimestampUnixMilli,
+                                    widget.data[pointIndex]
+                                        .endTimestampUnixMilli),
                                 style: TextStyle(
                                     fontFamily: widget.textStyle.fontFamily,
                                     fontWeight: FontWeight.w400),
