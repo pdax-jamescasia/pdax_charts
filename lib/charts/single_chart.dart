@@ -72,8 +72,44 @@ class _SingleChartState extends State<SingleChart> {
     }
   }
 
+  late TooltipBehavior _tooltipBehavior;
+
   @override
   void initState() {
+    _tooltipBehavior = TooltipBehavior(
+        shouldAlwaysShow: true,
+        enable: true,
+        elevation: 6,
+        shadowColor: Colors.black,
+        tooltipPosition: TooltipPosition.pointer,
+        color: const Color.fromARGB(255, 249, 249, 249),
+        canShowMarker: true,
+        builder: (data, point, series, pointIndex, seriesIndex) {
+          return Padding(
+            padding: const EdgeInsets.all(4),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  currencyFormat.format(widget.data[pointIndex].averagePrice),
+                  style: TextStyle(
+                      color: Colors.blue,
+                      fontFamily: widget.textStyle.fontFamily,
+                      fontWeight: FontWeight.w500),
+                ),
+                Text(
+                  getMiddleTime(widget.data[pointIndex].startTimestampUnixMilli,
+                      widget.data[pointIndex].endTimestampUnixMilli),
+                  style: TextStyle(
+                      fontFamily: widget.textStyle.fontFamily,
+                      fontWeight: FontWeight.w400),
+                ),
+              ],
+            ),
+          );
+        });
     currencyFormat.maximumFractionDigits = 2;
     super.initState();
   }
@@ -85,6 +121,7 @@ class _SingleChartState extends State<SingleChart> {
     double min_ = double.infinity;
     int maxIdx = 0;
     int minIdx = 0;
+    _tooltipBehavior.showByIndex(0, widget.data.length - 1);
 
     widget.data.asMap().forEach((idx, dataPoint) {
       if (dataPoint.averagePrice < min_) {
@@ -229,47 +266,7 @@ class _SingleChartState extends State<SingleChart> {
                   ),
                   primaryYAxis: NumericAxis(isVisible: false),
                   legend: const Legend(isVisible: false),
-                  tooltipBehavior: TooltipBehavior(
-                      shouldAlwaysShow: true,
-                      // activationMode: ActivationMode.singleTap,
-                      // borderWidth: 0.3,
-                      // borderColor: Colors.black,
-                      enable: true,
-                      elevation: 6,
-                      shadowColor: Colors.black,
-                      tooltipPosition: TooltipPosition.pointer,
-                      color: const Color.fromARGB(255, 249, 249, 249),
-                      canShowMarker: true,
-                      builder: (data, point, series, pointIndex, seriesIndex) {
-                        return Padding(
-                          padding: const EdgeInsets.all(4),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                currencyFormat.format(
-                                    widget.data[pointIndex].averagePrice),
-                                style: TextStyle(
-                                    color: Colors.blue,
-                                    fontFamily: widget.textStyle.fontFamily,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                              Text(
-                                getMiddleTime(
-                                    widget.data[pointIndex]
-                                        .startTimestampUnixMilli,
-                                    widget.data[pointIndex]
-                                        .endTimestampUnixMilli),
-                                style: TextStyle(
-                                    fontFamily: widget.textStyle.fontFamily,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                            ],
-                          ),
-                        );
-                      }),
+                  tooltipBehavior: _tooltipBehavior,
                   series: <ChartSeries<DataPoint, dynamic>>[
                     AreaSeries<DataPoint, dynamic>(
                         dataSource: widget.data,
