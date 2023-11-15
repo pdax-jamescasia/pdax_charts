@@ -112,6 +112,11 @@ class _SingleChartState extends State<SingleChart> {
         });
 
     currencyFormat.maximumFractionDigits = 2;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Timer(const Duration(milliseconds: 1000), () {
+        _tooltipBehavior.showByIndex(0, widget.data.length - 1);
+      });
+    });
     super.initState();
   }
 
@@ -134,11 +139,6 @@ class _SingleChartState extends State<SingleChart> {
       }
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Timer(const Duration(milliseconds: 1000), () {
-        _tooltipBehavior.showByIndex(0, widget.data.length - 1);
-      });
-    });
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -309,7 +309,7 @@ class _SingleChartState extends State<SingleChart> {
                             ))
                       ]),
                   Positioned(
-                    bottom: 10,
+                    bottom: 14,
                     left: 0,
                     right: 0,
                     child: Padding(
