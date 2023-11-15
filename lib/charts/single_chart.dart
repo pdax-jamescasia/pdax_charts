@@ -134,10 +134,12 @@ class _SingleChartState extends State<SingleChart> {
       }
     });
 
-    Timer(const Duration(milliseconds: 300), () {
-      _tooltipBehavior.showByIndex(0, widget.data.length - 1);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // Added 300 milliseconds to the series animation duration and provided it as the duration for the Timer.
+      Timer(const Duration(milliseconds: 400), () {
+        _tooltipBehavior.showByIndex(0, widget.data.length - 1);
+      });
     });
-
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,
