@@ -241,6 +241,10 @@ class _SingleChartState extends State<SingleChart> {
                       // color: const Color.fromARGB(255, 249, 249, 249),
                       // canShowMarker: true,
                       builder: (data, point, series, pointIndex, seriesIndex) {
+                        return Text(
+                          'adsfadf',
+                          style: TextStyle(color: Colors.red),
+                        );
                         return Padding(
                             padding: const EdgeInsets.symmetric(
                                 vertical: 2, horizontal: 3),
