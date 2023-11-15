@@ -121,7 +121,14 @@ class _SingleChartState extends State<SingleChart> {
     double min_ = double.infinity;
     int maxIdx = 0;
     int minIdx = 0;
-    _tooltipBehavior.showByIndex(0, widget.data.length - 1);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // Added 300 milliseconds to the series animation duration and provided it as the duration for the Timer.
+      Timer(Duration(milliseconds: 300), () {
+        // Activated the tooltip of the second data point’s index.
+        _tooltipBehavior.showByIndex(0, widget.data.length - 1);
+      });
+    });
 
     widget.data.asMap().forEach((idx, dataPoint) {
       if (dataPoint.averagePrice < min_) {
