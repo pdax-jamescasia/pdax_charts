@@ -57,7 +57,7 @@ class _AssetPerformanceWidgetState extends State<AssetPerformanceWidget> {
   }
 
   List<String> getLabels(String period, List<DataPoint> data) {
-    if (data.isEmpty) return ['', ''];
+    if (data.isEmpty || true) return ['', ''];
     DateTime date1 =
         DateTime.fromMillisecondsSinceEpoch(data.first.startTimestampUnixMilli);
     DateTime date2 =
