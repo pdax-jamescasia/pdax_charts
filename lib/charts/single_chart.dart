@@ -173,9 +173,10 @@ class _SingleChartState extends State<SingleChart> {
                               style: widget.textStyle,
                             ),
                             Text(
-                                currencyFormat.format(widget.isLoading
-                                    ? 'Loading price'
-                                    : widget.previousPrice ?? 'No data'),
+                                widget.isLoading
+                                    ? 'Loading Price'
+                                    : currencyFormat
+                                        .format(widget.previousPrice),
                                 style: widget.textStyle)
                           ],
                         ),
