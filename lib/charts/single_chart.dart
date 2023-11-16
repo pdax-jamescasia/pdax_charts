@@ -85,30 +85,35 @@ class _SingleChartState extends State<SingleChart> {
         color: const Color.fromARGB(255, 249, 249, 249),
         canShowMarker: true,
         builder: (data, point, series, pointIndex, seriesIndex) {
-          return Padding(
-            padding: const EdgeInsets.all(4),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  currencyFormat.format(widget.data[pointIndex].averagePrice),
-                  style: TextStyle(
-                      color: Colors.blue,
-                      fontFamily: widget.textStyle.fontFamily,
-                      fontWeight: FontWeight.w500),
-                ),
-                Text(
-                  getMiddleTime(widget.data[pointIndex].startTimestampUnixMilli,
-                      widget.data[pointIndex].endTimestampUnixMilli),
-                  style: TextStyle(
-                      fontFamily: widget.textStyle.fontFamily,
-                      fontWeight: FontWeight.w400),
-                ),
-              ],
-            ),
-          );
+          try {
+            return Padding(
+              padding: const EdgeInsets.all(4),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    currencyFormat.format(widget.data[pointIndex].averagePrice),
+                    style: TextStyle(
+                        color: Colors.blue,
+                        fontFamily: widget.textStyle.fontFamily,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  Text(
+                    getMiddleTime(
+                        widget.data[pointIndex].startTimestampUnixMilli,
+                        widget.data[pointIndex].endTimestampUnixMilli),
+                    style: TextStyle(
+                        fontFamily: widget.textStyle.fontFamily,
+                        fontWeight: FontWeight.w400),
+                  ),
+                ],
+              ),
+            );
+          } on Exception catch (_) {
+            return SizedBox();
+          }
         });
 
     currencyFormat.maximumFractionDigits = 2;
@@ -151,7 +156,7 @@ class _SingleChartState extends State<SingleChart> {
               builder: (context, snapshot) {
                 if (snapshot.data != null) {
                   double priceChange =
-                      snapshot.data! - (widget.previousPrice ?? 1);
+                      (snapshot.data ?? 1) - (widget.previousPrice ?? 1);
                   double priceChangePct =
                       priceChange * 100 / (widget.previousPrice ?? 1);
 
