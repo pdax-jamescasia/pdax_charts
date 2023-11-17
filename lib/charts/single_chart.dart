@@ -124,14 +124,10 @@ class _SingleChartState extends State<SingleChart> {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Timer(const Duration(milliseconds: 800), () {
-        print('data tooltip show!');
-        print(widget.data);
+      Timer(const Duration(milliseconds: 2000), () {
         try {
           _tooltipBehavior.showByIndex(0, widget.data.length - 1);
-        } catch (e) {
-          print('failed showing');
-        }
+        } catch (e) {}
       });
     });
     // calculate min max
