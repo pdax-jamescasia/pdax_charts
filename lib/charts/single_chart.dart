@@ -56,16 +56,16 @@ class _SingleChartState extends State<SingleChart> {
     DateTime date = DateTime.fromMillisecondsSinceEpoch(middleMillis);
     switch (widget.selectedPeriod) {
       case Constants.TWENTYFOUR_HOURS:
-        return "${Constants.months[date.month]} ${date.day} ${date.hour}:${date.minute}";
+        return "${Constants.months[date.month]} ${date.day} ${date.year} ${date.hour}:${date.minute}";
       case Constants.SEVEN_DAYS:
-        return "${Constants.months[date.month]} ${date.day} ${date.hour}:00";
+        return "${Constants.months[date.month]} ${date.day}  ${date.year} ${date.hour}:00";
 
       case Constants.THIRTY_DAYS:
-        return "${Constants.months[date.month]} ${date.day}";
+        return "${Constants.months[date.month]} ${date.day} ${date.year}";
       case Constants.NINETY_DAYS:
-        return "${Constants.months[date.month]} ${date.day}";
+        return "${Constants.months[date.month]} ${date.day} ${date.year}";
       case Constants.ONE_YEAR:
-        return "${Constants.months[date.month]} ${date.year}";
+        return "${Constants.months[date.month]} ${date.year} ${date.year}";
 
       default:
         return "";

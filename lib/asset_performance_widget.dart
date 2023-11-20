@@ -71,9 +71,9 @@ class _AssetPerformanceWidgetState extends State<AssetPerformanceWidget> {
       case Constants.THIRTY_DAYS:
         return [formatDateMonth(date1), formatDateMonth(date2)];
       case Constants.NINETY_DAYS:
-        return [formatDateMonth(date1), formatDateMonth(date2)];
+        return [formatDateMonthYear(date1), formatDateMonthYear(date2)];
       case Constants.ONE_YEAR:
-        return [formatDateMonth(date1), formatDateMonth(date2)];
+        return [formatMonthYear(date1), formatMonthYear(date2)];
 
       default:
         return ['', ''];
