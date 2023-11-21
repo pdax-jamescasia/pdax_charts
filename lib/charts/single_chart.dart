@@ -51,7 +51,7 @@ class _SingleChartState extends State<SingleChart> {
     if (amount == null) {
       return "0.0";
     }
-    if (amount < 0.01) {
+    if (amount.abs() < 0.01) {
       currencyFormat =
           NumberFormat.currency(locale: 'en_US', symbol: '₱', decimalDigits: 7);
     } else {
