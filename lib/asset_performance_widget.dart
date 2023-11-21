@@ -128,7 +128,7 @@ class _AssetPerformanceWidgetState extends State<AssetPerformanceWidget> {
                             const BorderRadius.all(Radius.circular(20))),
                     child: Text(
                       Constants.TWENTYFOUR_HOURS,
-                      style: widget.textStyle!.copyWith(
+                      style: widget.textStyle.copyWith(
                           color: selectedPeriod == Constants.TWENTYFOUR_HOURS
                               ? selectedColor
                               : unselectedColor),

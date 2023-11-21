@@ -46,8 +46,20 @@ class SingleChart extends StatefulWidget {
 }
 
 class _SingleChartState extends State<SingleChart> {
-  NumberFormat currencyFormat =
-      NumberFormat.currency(locale: 'en_US', symbol: '₱', decimalDigits: 2);
+  String formatAmount(num? amount) {
+    NumberFormat currencyFormat;
+    if (amount == null) {
+      return "0.0";
+    }
+    if (amount < 0.01) {
+      currencyFormat =
+          NumberFormat.currency(locale: 'en_US', symbol: '₱', decimalDigits: 7);
+    } else {
+      currencyFormat =
+          NumberFormat.currency(locale: 'en_US', symbol: '₱', decimalDigits: 2);
+    }
+    return currencyFormat.format(amount);
+  }
 
   // function for getting the representative (middle) time for any period
   String getMiddleTime(int startMillis, int endMillis) {
@@ -94,7 +106,7 @@ class _SingleChartState extends State<SingleChart> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    currencyFormat.format(widget.data[pointIndex].averagePrice),
+                    formatAmount(widget.data[pointIndex].averagePrice),
                     style: TextStyle(
                         color: Colors.blue,
                         fontFamily: widget.textStyle.fontFamily,
@@ -116,7 +128,7 @@ class _SingleChartState extends State<SingleChart> {
           }
         });
 
-    currencyFormat.maximumFractionDigits = 2;
+    // currencyFormat.maximumFractionDigits = 2;
     WidgetsFlutterBinding.ensureInitialized();
     super.initState();
   }
@@ -177,8 +189,7 @@ class _SingleChartState extends State<SingleChart> {
                             Text(
                                 widget.isLoading
                                     ? 'Loading Price'
-                                    : currencyFormat
-                                        .format(widget.previousPrice),
+                                    : formatAmount(widget.previousPrice),
                                 style: widget.textStyle)
                           ],
                         ),
@@ -190,7 +201,7 @@ class _SingleChartState extends State<SingleChart> {
                           children: [
                             Text('Current price:', style: widget.textStyle),
                             snapshot.hasData
-                                ? Text(currencyFormat.format(snapshot.data!),
+                                ? Text(formatAmount(snapshot.data!),
                                     style: widget.textStyle)
                                 : Text('Loading prices',
                                     style: widget.textStyle)
@@ -210,7 +221,7 @@ class _SingleChartState extends State<SingleChart> {
                             Text('Price change:', style: widget.textStyle),
                             (snapshot.hasData)
                                 ? Text(
-                                    '(${priceChangePct > 0 ? '+' : ''}${priceChangePct.toStringAsFixed(2)} %) ${currencyFormat.format(priceChange)}',
+                                    '(${priceChangePct > 0 ? '+' : ''}${priceChangePct.toStringAsFixed(2)} %) ${formatAmount(priceChange)}',
                                     style: widget.textStyle!.copyWith(
                                         color: priceChangePct.isNegative
                                             ? Colors.red
@@ -308,7 +319,7 @@ class _SingleChartState extends State<SingleChart> {
                                 } else if ([maxIdx, minIdx]
                                     .contains(pointIndex)) {
                                   return Text(
-                                    currencyFormat.format(data.averagePrice),
+                                    formatAmount(data.averagePrice),
                                     style: widget.textStyle,
                                   );
                                 } else {
