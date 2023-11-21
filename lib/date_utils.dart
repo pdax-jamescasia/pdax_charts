@@ -21,13 +21,13 @@ String formatDateMonth(DateTime dateTime) {
 
 String formatDateMonthYear(DateTime dateTime) {
   DateFormat formatter =
-      DateFormat('MMM d YYYY'); // Format for "Jan 4", "Oct 12", etc.
+      DateFormat('MMM d yyyy'); // Format for "Jan 4", "Oct 12", etc.
   String formattedDate = formatter.format(dateTime);
   return formattedDate;
 }
 
 String formatMonthYear(DateTime dateTime) {
-  DateFormat formatter = DateFormat('MMM YYYY');
+  DateFormat formatter = DateFormat('MMM yyyy');
   String formattedMonthYear = formatter.format(dateTime);
   return formattedMonthYear;
 }

@@ -65,7 +65,7 @@ class _SingleChartState extends State<SingleChart> {
       case Constants.NINETY_DAYS:
         return "${Constants.months[date.month]} ${date.day} ${date.year}";
       case Constants.ONE_YEAR:
-        return "${Constants.months[date.month]} ${date.year} ${date.year}";
+        return "${Constants.months[date.month]} ${date.year}";
 
       default:
         return "";
