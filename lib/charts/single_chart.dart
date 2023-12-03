@@ -51,12 +51,18 @@ class _SingleChartState extends State<SingleChart> {
     if (amount == null) {
       return "0.0";
     }
-    if (amount.abs() < 0.01) {
-      currencyFormat =
-          NumberFormat.currency(locale: 'en_US', symbol: '₱', decimalDigits: 7);
-    } else {
+    if (amount.abs() > 100) {
       currencyFormat =
           NumberFormat.currency(locale: 'en_US', symbol: '₱', decimalDigits: 2);
+    } else if (amount.abs() > 1) {
+      currencyFormat =
+          NumberFormat.currency(locale: 'en_US', symbol: '₱', decimalDigits: 3);
+    } else if (amount.abs() > 0.0001) {
+      currencyFormat =
+          NumberFormat.currency(locale: 'en_US', symbol: '₱', decimalDigits: 4);
+    } else {
+      currencyFormat =
+          NumberFormat.currency(locale: 'en_US', symbol: '₱', decimalDigits: 8);
     }
     return currencyFormat.format(amount);
   }
@@ -222,12 +228,12 @@ class _SingleChartState extends State<SingleChart> {
                             (snapshot.hasData)
                                 ? Text(
                                     '(${priceChangePct > 0 ? '+' : ''}${priceChangePct.toStringAsFixed(2)} %) ${formatAmount(priceChange)}',
-                                    style: widget.textStyle!.copyWith(
+                                    style: widget.textStyle.copyWith(
                                         color: priceChangePct.isNegative
                                             ? Colors.red
                                             : priceChangePct > 0
                                                 ? Colors.green
-                                                : widget.textStyle!.color))
+                                                : widget.textStyle.color))
                                 : Text('Loading prices',
                                     style: widget.textStyle)
                           ],
