@@ -176,99 +176,89 @@ class _SingleChartState extends State<SingleChart> {
           child: StreamBuilder<double>(
               stream: widget.currentPriceStream,
               builder: (context, snapshot) {
-                if ([Constants.TWENTYFOUR_HOURS, Constants.SEVEN_DAYS]
-                    .contains(widget.selectedPeriod)) {
+                if (snapshot.data != null) {
+                  double priceChange =
+                      (snapshot.data ?? 1) - (widget.previousPrice ?? 1);
+                  double priceChangePct =
+                      priceChange * 100 / (widget.previousPrice ?? 1);
+
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 4.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Price (${widget.selectedPeriod}) ago:',
+                              style: widget.textStyle,
+                            ),
+                            Text(
+                                widget.isLoading
+                                    ? 'Loading Price'
+                                    : formatAmount(widget.previousPrice),
+                                style: widget.textStyle)
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 4.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('Current price:', style: widget.textStyle),
+                            snapshot.hasData
+                                ? Text(formatAmount(snapshot.data!),
+                                    style: widget.textStyle)
+                                : Text('Loading prices',
+                                    style: widget.textStyle)
+                            // if (snapshot.hasData) {
+                            //       return ;
+                            //     } else {
+                            //       return Text('Loading prices');
+                            //     }
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('Price change:', style: widget.textStyle),
+                            (snapshot.hasData)
+                                ? Text(
+                                    '(${priceChangePct > 0 ? '+' : ''}${priceChangePct.toStringAsFixed(2)} %) ${formatAmount(priceChange)}',
+                                    style: widget.textStyle.copyWith(
+                                        color: priceChangePct.isNegative
+                                            ? Colors.red
+                                            : priceChangePct > 0
+                                                ? Colors.green
+                                                : widget.textStyle.color))
+                                : Text('Loading prices',
+                                    style: widget.textStyle)
+                          ],
+                        ),
+                      )
+                    ],
+                  );
+                } else if (snapshot.connectionState ==
+                    ConnectionState.waiting) {
                   return const SizedBox(
                     height: 100,
                     child: Center(
-                      child: Text('No data'),
+                      child: Text('Loading prices.'),
                     ),
                   );
                 } else {
-                  if (snapshot.data != null) {
-                    double priceChange =
-                        (snapshot.data ?? 1) - (widget.previousPrice ?? 1);
-                    double priceChangePct =
-                        priceChange * 100 / (widget.previousPrice ?? 1);
-
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 4.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Price (${widget.selectedPeriod}) ago:',
-                                style: widget.textStyle,
-                              ),
-                              Text(
-                                  widget.isLoading
-                                      ? 'Loading Price'
-                                      : formatAmount(widget.previousPrice),
-                                  style: widget.textStyle)
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 4.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text('Current price:', style: widget.textStyle),
-                              snapshot.hasData
-                                  ? Text(formatAmount(snapshot.data!),
-                                      style: widget.textStyle)
-                                  : Text('Loading prices',
-                                      style: widget.textStyle)
-                              // if (snapshot.hasData) {
-                              //       return ;
-                              //     } else {
-                              //       return Text('Loading prices');
-                              //     }
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 4.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text('Price change:', style: widget.textStyle),
-                              (snapshot.hasData)
-                                  ? Text(
-                                      '(${priceChangePct > 0 ? '+' : ''}${priceChangePct.toStringAsFixed(2)} %) ${formatAmount(priceChange)}',
-                                      style: widget.textStyle.copyWith(
-                                          color: priceChangePct.isNegative
-                                              ? Colors.red
-                                              : priceChangePct > 0
-                                                  ? Colors.green
-                                                  : widget.textStyle.color))
-                                  : Text('Loading prices',
-                                      style: widget.textStyle)
-                            ],
-                          ),
-                        )
-                      ],
-                    );
-                  } else if (snapshot.connectionState ==
-                      ConnectionState.waiting) {
-                    return const SizedBox(
-                      height: 100,
-                      child: Center(
-                        child: Text('Loading prices.'),
-                      ),
-                    );
-                  } else {
-                    return const SizedBox(
-                      height: 100,
-                      child: Center(
-                        child: Text(
-                            'Failed fetching prices. Please try again later'),
-                      ),
-                    );
-                  }
+                  return const SizedBox(
+                    height: 100,
+                    child: Center(
+                      child: Text(
+                          'Failed fetching prices. Please try again later'),
+                    ),
+                  );
                 }
               }),
         ),

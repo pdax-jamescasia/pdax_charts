@@ -45,7 +45,9 @@ class _AssetPerformanceWidgetState extends State<AssetPerformanceWidget> {
   // in-widget state
   String selectedPeriod = Constants.THIRTY_DAYS;
 
-  List<bool> selectedStatus = [true, false, false, false, false];
+  // List<bool> selectedStatus = [true, false, false, false, false];
+  List<bool> selectedStatus = [true, false, false];
+
   Color selectedColor = Colors.black;
   Color unselectedColor = Colors.black54;
   double gap = 4;
@@ -86,10 +88,6 @@ class _AssetPerformanceWidgetState extends State<AssetPerformanceWidget> {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        // if ([Constants.TWENTYFOUR_HOURS, Constants.SEVEN_DAYS]
-        //     .contains(selectedPeriod))
-        //   const Center(child: Text('No data available'))
-        // else
         SingleChart(
           selectedPeriod: selectedPeriod,
           data: widget.data,
@@ -110,65 +108,66 @@ class _AssetPerformanceWidgetState extends State<AssetPerformanceWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: gap, vertical: 4),
-                child: InkWell(
-                  borderRadius: const BorderRadius.all(Radius.circular(20)),
-                  onTap: () {
-                    setState(() {
-                      selectedPeriod = Constants.TWENTYFOUR_HOURS;
-                      widget
-                          .fetchChartPricesCallback(Constants.TWENTYFOUR_HOURS);
-                    });
-                  },
-                  child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                    decoration: BoxDecoration(
-                        color: selectedPeriod == Constants.TWENTYFOUR_HOURS
-                            ? Colors.grey.withOpacity(0.2)
-                            : Colors.transparent,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(20))),
-                    child: Text(
-                      Constants.TWENTYFOUR_HOURS,
-                      style: widget.textStyle.copyWith(
-                          color: selectedPeriod == Constants.TWENTYFOUR_HOURS
-                              ? selectedColor
-                              : unselectedColor),
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: gap, vertical: 4),
-                child: InkWell(
-                  borderRadius: const BorderRadius.all(Radius.circular(20)),
-                  onTap: () {
-                    setState(() {
-                      selectedPeriod = Constants.SEVEN_DAYS;
-                      widget.fetchChartPricesCallback(Constants.SEVEN_DAYS);
-                    });
-                  },
-                  child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                    decoration: BoxDecoration(
-                        color: selectedPeriod == Constants.SEVEN_DAYS
-                            ? Colors.grey.withOpacity(0.2)
-                            : Colors.transparent,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(20))),
-                    child: Text(
-                      Constants.SEVEN_DAYS,
-                      style: widget.textStyle.copyWith(
-                          color: selectedPeriod == Constants.SEVEN_DAYS
-                              ? selectedColor
-                              : unselectedColor),
-                    ),
-                  ),
-                ),
-              ),
+              //commented out to remove 24h,7d
+              // Padding(
+              //   padding: EdgeInsets.symmetric(horizontal: gap, vertical: 4),
+              //   child: InkWell(
+              //     borderRadius: const BorderRadius.all(Radius.circular(20)),
+              //     onTap: () {
+              //       setState(() {
+              //         selectedPeriod = Constants.TWENTYFOUR_HOURS;
+              //         widget
+              //             .fetchChartPricesCallback(Constants.TWENTYFOUR_HOURS);
+              //       });
+              //     },
+              //     child: Container(
+              //       padding:
+              //           const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              //       decoration: BoxDecoration(
+              //           color: selectedPeriod == Constants.TWENTYFOUR_HOURS
+              //               ? Colors.grey.withOpacity(0.2)
+              //               : Colors.transparent,
+              //           borderRadius:
+              //               const BorderRadius.all(Radius.circular(20))),
+              //       child: Text(
+              //         Constants.TWENTYFOUR_HOURS,
+              //         style: widget.textStyle.copyWith(
+              //             color: selectedPeriod == Constants.TWENTYFOUR_HOURS
+              //                 ? selectedColor
+              //                 : unselectedColor),
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              // Padding(
+              //   padding: EdgeInsets.symmetric(horizontal: gap, vertical: 4),
+              //   child: InkWell(
+              //     borderRadius: const BorderRadius.all(Radius.circular(20)),
+              //     onTap: () {
+              //       setState(() {
+              //         selectedPeriod = Constants.SEVEN_DAYS;
+              //         widget.fetchChartPricesCallback(Constants.SEVEN_DAYS);
+              //       });
+              //     },
+              //     child: Container(
+              //       padding:
+              //           const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              //       decoration: BoxDecoration(
+              //           color: selectedPeriod == Constants.SEVEN_DAYS
+              //               ? Colors.grey.withOpacity(0.2)
+              //               : Colors.transparent,
+              //           borderRadius:
+              //               const BorderRadius.all(Radius.circular(20))),
+              //       child: Text(
+              //         Constants.SEVEN_DAYS,
+              //         style: widget.textStyle.copyWith(
+              //             color: selectedPeriod == Constants.SEVEN_DAYS
+              //                 ? selectedColor
+              //                 : unselectedColor),
+              //       ),
+              //     ),
+              //   ),
+              // ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: gap, vertical: 4),
                 child: InkWell(
