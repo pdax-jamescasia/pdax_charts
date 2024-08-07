@@ -86,6 +86,10 @@ class _AssetPerformanceWidgetState extends State<AssetPerformanceWidget> {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        // if ([Constants.TWENTYFOUR_HOURS, Constants.SEVEN_DAYS]
+        //     .contains(selectedPeriod))
+        //   const Center(child: Text('No data available'))
+        // else
         SingleChart(
           selectedPeriod: selectedPeriod,
           data: widget.data,
