@@ -272,7 +272,15 @@ class _SingleChartState extends State<SingleChart> {
                 }
               }),
         ),
-        if (widget.isFail)
+        if ([Constants.TWENTYFOUR_HOURS, Constants.SEVEN_DAYS]
+            .contains(widget.selectedPeriod))
+          SizedBox(
+            height: widget.boxHeight,
+            child: Center(
+              child: Text('No data Available for ${widget.selectedPeriod}'),
+            ),
+          )
+        else if (widget.isFail)
           SizedBox(
             height: widget.boxHeight,
             child: const Center(
