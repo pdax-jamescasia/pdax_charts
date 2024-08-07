@@ -181,7 +181,7 @@ class _SingleChartState extends State<SingleChart> {
                   return const SizedBox(
                     height: 100,
                     child: Center(
-                      child: Text('No data available for period.'),
+                      child: Text('No data'),
                     ),
                   );
                 } else {
@@ -277,7 +277,7 @@ class _SingleChartState extends State<SingleChart> {
           SizedBox(
             height: widget.boxHeight,
             child: Center(
-              child: Text('No data Available for ${widget.selectedPeriod}'),
+              child: Text('No data available for ${widget.selectedPeriod}'),
             ),
           )
         else if (widget.isFail)

@@ -46,7 +46,7 @@ class _AssetPerformanceWidgetState extends State<AssetPerformanceWidget> {
   String selectedPeriod = Constants.THIRTY_DAYS;
 
   List<bool> selectedStatus = [true, false, false, false, false];
-  Color selectedColor = Colors.red;
+  Color selectedColor = Colors.black;
   Color unselectedColor = Colors.black54;
   double gap = 4;
   final double boxHeight = 380;
