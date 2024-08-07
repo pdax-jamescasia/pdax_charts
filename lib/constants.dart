@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, constant_identifier_names
 
 class Constants {
   static const String TWENTYFOUR_HOURS = '1d';

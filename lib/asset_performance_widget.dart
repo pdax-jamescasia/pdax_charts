@@ -157,7 +157,7 @@ class _AssetPerformanceWidgetState extends State<AssetPerformanceWidget> {
                             const BorderRadius.all(Radius.circular(20))),
                     child: Text(
                       Constants.SEVEN_DAYS,
-                      style: widget.textStyle!.copyWith(
+                      style: widget.textStyle.copyWith(
                           color: selectedPeriod == Constants.SEVEN_DAYS
                               ? selectedColor
                               : unselectedColor),
@@ -186,7 +186,7 @@ class _AssetPerformanceWidgetState extends State<AssetPerformanceWidget> {
                             const BorderRadius.all(Radius.circular(20))),
                     child: Text(
                       Constants.THIRTY_DAYS,
-                      style: widget.textStyle!.copyWith(
+                      style: widget.textStyle.copyWith(
                           color: selectedPeriod == Constants.THIRTY_DAYS
                               ? selectedColor
                               : unselectedColor),
@@ -215,7 +215,7 @@ class _AssetPerformanceWidgetState extends State<AssetPerformanceWidget> {
                             const BorderRadius.all(Radius.circular(20))),
                     child: Text(
                       Constants.NINETY_DAYS,
-                      style: widget.textStyle!.copyWith(
+                      style: widget.textStyle.copyWith(
                           color: selectedPeriod == Constants.NINETY_DAYS
                               ? selectedColor
                               : unselectedColor),
@@ -244,7 +244,7 @@ class _AssetPerformanceWidgetState extends State<AssetPerformanceWidget> {
                             const BorderRadius.all(Radius.circular(20))),
                     child: Text(
                       Constants.ONE_YEAR,
-                      style: widget.textStyle!.copyWith(
+                      style: widget.textStyle.copyWith(
                           color: selectedPeriod == Constants.ONE_YEAR
                               ? selectedColor
                               : unselectedColor),

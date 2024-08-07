@@ -130,7 +130,7 @@ class _SingleChartState extends State<SingleChart> {
               ),
             );
           } on Exception catch (_) {
-            return SizedBox();
+            return const SizedBox();
           }
         });
 
@@ -145,7 +145,9 @@ class _SingleChartState extends State<SingleChart> {
       Timer(const Duration(milliseconds: 2000), () {
         try {
           _tooltipBehavior.showByIndex(0, widget.data.length - 1);
-        } catch (e) {}
+        } catch (e) {
+          //
+        }
       });
     });
     // calculate min max
