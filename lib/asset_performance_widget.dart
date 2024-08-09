@@ -66,10 +66,11 @@ class _AssetPerformanceWidgetState extends State<AssetPerformanceWidget> {
         DateTime.fromMillisecondsSinceEpoch(data.last.endTimestampUnixMilli);
 
     switch (period) {
-      case Constants.TWENTYFOUR_HOURS:
-        return [formatTimeOfDay(date1), formatTimeOfDay(date2)];
-      case Constants.SEVEN_DAYS:
-        return [formatDateMonth(date1), formatDateMonth(date2)];
+      // remove 24h, 7d
+      // case Constants.TWENTYFOUR_HOURS:
+      //   return [formatTimeOfDay(date1), formatTimeOfDay(date2)];
+      // case Constants.SEVEN_DAYS:
+      //   return [formatDateMonth(date1), formatDateMonth(date2)];
       case Constants.THIRTY_DAYS:
         return [formatDateMonth(date1), formatDateMonth(date2)];
       case Constants.NINETY_DAYS:
