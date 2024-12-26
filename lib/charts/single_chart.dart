@@ -302,15 +302,15 @@ class _SingleChartState extends State<SingleChart> {
                       plotAreaBorderWidth: 0,
                       backgroundColor: Colors.transparent,
                       borderColor: Colors.transparent,
-                      primaryXAxis: NumericAxis(
+                      primaryXAxis: const NumericAxis(
                         isVisible: false,
-                        minorTickLines: const MinorTickLines(size: 0),
+                        minorTickLines: MinorTickLines(size: 0),
                         // majorTickLines: const MajorTickLines(size: 0),
                       ),
-                      primaryYAxis: NumericAxis(isVisible: false),
+                      primaryYAxis: const NumericAxis(isVisible: false),
                       legend: const Legend(isVisible: false),
                       tooltipBehavior: _tooltipBehavior,
-                      series: <ChartSeries<DataPoint, dynamic>>[
+                      series: <CartesianSeries>[
                         AreaSeries<DataPoint, dynamic>(
                             dataSource: widget.data,
                             gradient: widget.gradient,

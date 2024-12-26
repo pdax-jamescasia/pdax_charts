@@ -184,7 +184,7 @@ class _AssetPerformanceWidgetState extends State<AssetPerformanceWidget> {
                         const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
                         color: selectedPeriod == Constants.THIRTY_DAYS
-                            ? Colors.grey.withOpacity(0.2)
+                            ? Colors.grey.withValues(alpha: 0.2 * 255)
                             : Colors.transparent,
                         borderRadius:
                             const BorderRadius.all(Radius.circular(20))),
@@ -213,7 +213,7 @@ class _AssetPerformanceWidgetState extends State<AssetPerformanceWidget> {
                         const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
                         color: selectedPeriod == Constants.NINETY_DAYS
-                            ? Colors.grey.withOpacity(0.2)
+                            ? Colors.grey.withValues(alpha: 0.2 * 255)
                             : Colors.transparent,
                         borderRadius:
                             const BorderRadius.all(Radius.circular(20))),
@@ -242,7 +242,7 @@ class _AssetPerformanceWidgetState extends State<AssetPerformanceWidget> {
                         const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
                         color: selectedPeriod == Constants.ONE_YEAR
-                            ? Colors.grey.withOpacity(0.2)
+                            ? Colors.grey.withValues(alpha: 0.2 * 255)
                             : Colors.transparent,
                         borderRadius:
                             const BorderRadius.all(Radius.circular(20))),
